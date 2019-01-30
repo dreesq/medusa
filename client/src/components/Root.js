@@ -20,6 +20,7 @@ export default class Root extends Component {
                     {/* ========== Auth =========== */}
                     <Route path={'/auth'} exact component={Guard(Async('Auth'), {redirectSuccess: '/'})}/>
                     <Route path={`/auth/register`} exact component={Guard(Async('Auth/Register'), {redirectSuccess: '/'})}/>
+                    <Route path={`/auth/reset`} exact component={Guard(Async('Auth/Reset'), {redirectSuccess: '/'})}/>
 
                     {/* ========== Other =========== */}
                     <Route path={`*`} component={Async('Misc/NotFound')}/>
