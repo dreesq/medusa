@@ -1,5 +1,5 @@
 {
-  "debug": false,
+  "debug": true,
   "baseUrl": "http://localhost:3004",
   "server": {
     "port": 3004,
@@ -9,11 +9,6 @@
     "cors": {
       "origin": "*",
       "credentials": true
-    },
-    "session": {
-      "resave": false,
-      "saveUninitialized": false,
-      "secret": "mySecret"
     }
   },
   "plugins": {
@@ -45,14 +40,10 @@
       }
     },
     "logger": {
-      "path": "storage/logs.out",
+      "path": "storage/logs/logs.out",
       "maxsize": 10000000,
       "zippedArchive": true,
       "maxFiles": 5
-    },
-    "redis": {
-    },
-    "socket": {
     },
     "i18n": {
       "defaultLocale": "en",
