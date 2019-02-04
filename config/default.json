@@ -17,6 +17,11 @@
     }
   },
   "plugins": {
+    "validator": {
+      "gcaptcha": {
+        "secret": ""
+      }
+    },
     "db": {
       "server": "mongodb://127.0.0.1/database"
     },
@@ -30,8 +35,7 @@
       },
       "strategies": [
         "local",
-        "fb",
-        "google"
+        "fb"
       ]
     },
     "mail": {
