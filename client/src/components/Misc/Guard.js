@@ -29,10 +29,18 @@ export default (WrappedComponent, options = {}) => {
             };
 
             try {
-                const res = await client.getUser();
-                opts.user = res.data;
+                console.log('getting user....');
+                const {data, errors} = await client._auth.getUser();
 
-                if (options.accessRole && opts.user.access !== options.accessRole) {
+                console.log('data', data, 'errors', errors);
+
+                if (errors) {
+                    throw new Error();
+                }
+
+                const {is} = client._auth;
+
+                if (options.role && !is(options.role)) {
                     return history.push(options.redirectFailed);
                 }
 

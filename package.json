@@ -23,7 +23,9 @@
   "homepage": "https://github.com/dreesq/medusa#readme",
   "dependencies": {
     "@dreesq/serpent": "^1.2.3",
-    "@dreesq/serpent-client": "^1.1.1",
+    "@dreesq/serpent-client": "^1.2.5",
+    "@fortawesome/fontawesome-svg-core": "^1.2.14",
+    "@fortawesome/free-brands-svg-icons": "^5.7.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "bootstrap": "^4.2.1",
     "cross-env": "^5.2.0",
@@ -37,7 +39,7 @@
     "reactstrap": "^7.1.0"
   },
   "devDependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
     "react-scripts": "^2.1.3"
   }
 }

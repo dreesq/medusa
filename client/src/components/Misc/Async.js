@@ -3,11 +3,10 @@ import React, {Component} from 'react';
 /**
  * HoC handling lazy loading components
  * @param path
- * @param options
  * @returns {{new(): {state, componentDidMount(), render(): *}, prototype: {state, componentDidMount(), render(): *}}}
  */
 
-export default (path) => {
+export default path => {
     return class Async extends Component {
         static Component = null;
 

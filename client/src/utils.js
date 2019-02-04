@@ -15,3 +15,17 @@ export const parse = e => {
 
     return data;
 };
+
+/**
+ * Capitalize first letter of a string
+ * @param str
+ * @returns {string}
+ */
+
+export const capitalize = str => {
+    if (typeof str !== 'string') {
+        return '';
+    }
+
+    return str.charAt(0).toUpperCase() + str.slice(1)
+};
