@@ -29,10 +29,7 @@ export default (WrappedComponent, options = {}) => {
             };
 
             try {
-                console.log('getting user....');
                 const {data, errors} = await client._auth.getUser();
-
-                console.log('data', data, 'errors', errors);
 
                 if (errors) {
                     throw new Error();

@@ -29,3 +29,13 @@ export const capitalize = str => {
 
     return str.charAt(0).toUpperCase() + str.slice(1)
 };
+
+/**
+ * Returns acronym of words
+ * @param str
+ * @returns {string}
+ */
+
+export const acronym = (str = '') => {
+    return (str.match(/\b\w/g) || []).join('');
+};

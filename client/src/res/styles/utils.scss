@@ -1,3 +1,21 @@
 .ty-50 {
   transform: translateY(50%);
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 50%;
+  background: #fa243d;
+  text-align: center;
+  line-height: 40px;
+  display: inline-block;
+  justify-content: center;
+  margin-right: 6px;
+}
