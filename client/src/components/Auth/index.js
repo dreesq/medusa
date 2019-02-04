@@ -4,14 +4,18 @@ import {Link} from 'react-router-dom';
 import client from '../../client';
 
 export default class Auth extends Component {
-    login = async e => {
-        e.preventDefault();
+    state = {
+        form: {},
+        error: {}
+    };
 
-        const {errors, data} = await client.login({
+    login = async e => {
+        const parsed = parse(e);
+
+        const a = await client.login({
+            ...parsed,
             provider: 'local'
         });
-
-        console.log(e, errors, data);
     };
 
     render() {

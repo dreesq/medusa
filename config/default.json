@@ -9,6 +9,19 @@
     "cors": {
       "origin": "*",
       "credentials": true
+    },
+    "session": {
+      "resave": false,
+      "saveUninitialized": false,
+      "secret": "mySecret"
+    }
+  },
+  "plugins": {
+    "validator": {
+      "gcaptcha": {
+        "secret": ""
+      }
+    },
     }
   },
   "plugins": {
@@ -25,8 +38,7 @@
       },
       "strategies": [
         "local",
-        "fb",
-        "google"
+        "fb"
       ]
     },
     "mail": {
