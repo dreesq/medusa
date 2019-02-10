@@ -8,6 +8,8 @@ import client from './client';
 
 library.add(fab);
 
+window.client = client;
+
 client.ready(() => {
     ReactDOM.render(<Root />, document.getElementById('root'));
 });

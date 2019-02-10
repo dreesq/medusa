@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import Menu from '../Misc/Menu';
+import Layout from "../Misc/Layout";
 
 export default class Panel extends Component {
     render() {
         return (
-            <div>
-                <Menu/>
-            </div>
+            <Layout>
+                <h1>Panel</h1>
+            </Layout>
         );
     }
 }

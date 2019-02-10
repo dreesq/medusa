@@ -39,3 +39,22 @@ export const capitalize = str => {
 export const acronym = (str = '') => {
     return (str.match(/\b\w/g) || []).join('');
 };
+
+/**
+ * Returns given parsed query string
+ * @param string
+ * @returns {string}
+ */
+
+export const parseQs = (string) => {
+    let query = string.substring(1);
+    let vars = query.split('&');
+    let parsed = {};
+
+    for (let i = 0, len = vars.length; i < len; i++) {
+        let pair = vars[i].split('=');
+        parsed[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+    }
+
+    return parsed;
+};

@@ -1,6 +1,6 @@
 {
   "debug": true,
-  "baseUrl": "http://localhost:3004",
+  "baseUrl": "http://localhost:3000",
   "server": {
     "port": 3004,
     "helmet": true,

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import Layout from "../Misc/Layout";
+import Layout from '../Misc/Layout';
 
-export default class Admin extends Component {
+export default class User extends Component {
     render() {
         return (
             <Layout>
-                <h1>Admin</h1>
+                <h1>Settings</h1>
             </Layout>
         );
     }

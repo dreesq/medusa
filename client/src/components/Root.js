@@ -6,21 +6,25 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import Async from './Misc/Async';
 import Guard from './Misc/Guard';
 
+const AuthRoute = ({path, component, exact = false}) => <Route path={path} exact={exact} component={Guard(Async(component), {redirectFailed: '/auth'})} />;
+
 export default class Root extends Component {
     render() {
         return (
             <Router>
                 <Switch>
                     {/* ========== Admin =========== */}
-                    <Route path={'/admin'} exact component={Guard(Async('Admin'), {redirectFailed: '/auth'})} />
+                    <AuthRoute path={'/admin'} component={'Admin'} />
 
                     {/* ========== User =========== */}
-                    <Route path={'/'} exact component={Guard(Async('Panel'), {redirectFailed: '/auth'})} />
+                    <AuthRoute path={'/'} exact component={'Panel'} />
+                    <AuthRoute path={'/user/settings'} component={'User'}/>
 
                     {/* ========== Auth =========== */}
                     <Route path={'/auth'} exact component={Guard(Async('Auth'), {redirectSuccess: '/'})}/>
                     <Route path={`/auth/register`} exact component={Guard(Async('Auth/Register'), {redirectSuccess: '/'})}/>
                     <Route path={`/auth/reset`} exact component={Guard(Async('Auth/Reset'), {redirectSuccess: '/'})}/>
+                    <Route path={'/auth/confirm'} exact component={Async('Auth/Confirm')} />
 
                     {/* ========== Other =========== */}
                     <Route path={`*`} component={Async('Misc/NotFound')}/>

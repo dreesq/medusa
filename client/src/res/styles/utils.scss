@@ -19,3 +19,12 @@
   justify-content: center;
   margin-right: 13px;
 }
+
+a.unstyled {
+  color: #212529;
+
+  &:hover, &:active, &:focus {
+    color: #212529;
+    text-decoration: none;
+  }
+}
