@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/dreesq/medusa#readme",
   "dependencies": {
-    "@dreesq/serpent": "^1.3.2",
+    "@dreesq/serpent": "^1.4.1",
     "@dreesq/serpent-client": "^1.3.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.14",
     "@fortawesome/free-brands-svg-icons": "^5.7.1",
