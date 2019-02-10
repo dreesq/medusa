@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container} from 'reactstrap';
+import {Container, Row, Col} from 'reactstrap';
 import Menu from "./Menu";
 
 export default class Layout extends Component {
@@ -8,7 +8,11 @@ export default class Layout extends Component {
             <div className={'layout'}>
                 <Menu/>
                 <Container>
-                    {this.props.children}
+                    <Row>
+                        <Col lg={12} className={'mt-5'}>
+                            {this.props.children}
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );

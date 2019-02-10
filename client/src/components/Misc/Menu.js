@@ -40,7 +40,7 @@ class Menu extends Component {
         return (
             <Navbar color="light" light expand="md">
                 <Container>
-                    <NavbarBrand href="/">medusa</NavbarBrand>
+                    <NavbarBrand to="/" tag={RNLink}>medusa</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={open} navbar>
                         <Nav className="ml-auto align-items-sm-center" navbar>

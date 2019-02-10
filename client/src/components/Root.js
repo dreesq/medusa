@@ -14,7 +14,8 @@ export default class Root extends Component {
             <Router>
                 <Switch>
                     {/* ========== Admin =========== */}
-                    <AuthRoute path={'/admin'} component={'Admin'} />
+                    <AuthRoute path={'/admin'} exact component={'Admin'} />
+                    <AuthRoute path={'/admin/users'} component={'Admin/Users'} />
 
                     {/* ========== User =========== */}
                     <AuthRoute path={'/'} exact component={'Panel'} />

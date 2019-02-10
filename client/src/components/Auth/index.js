@@ -6,19 +6,30 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Alert from '../Misc/Alert';
 import {parse} from "../../utils";
 import {withRouter} from 'react-router-dom';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import {FB_APP_ID} from "../../constants";
 
 class Auth extends Component {
     state = {
         loading: false
     };
 
-    login = async e => {
-        const parsed = parse(e);
+    login = async (e, provider = 'local') => {
+        let parsed = {};
+
+        if (provider === 'local') {
+            parsed = parse(e);
+        } else {
+            parsed = {
+                accessToken: e.accessToken
+            };
+        }
+
         this.loading(true);
 
         const {data: user, errors} = await client._auth.login({
             ...parsed,
-            provider: 'local'
+            provider
         });
 
         this.loading(false);
@@ -65,10 +76,18 @@ class Auth extends Component {
                                         Submit
                                     </Button>
                                     <hr/>
-                                    <Button block color={'primary'}>
-                                        <FontAwesomeIcon icon={['fab', 'facebook']}/>{' '}
-                                        Login with facebook
-                                    </Button>
+                                    <FacebookLogin
+                                        appId={FB_APP_ID}
+                                        autoLoad
+                                        callback={data => this.login(data, 'fb')}
+                                        render={props => (
+                                            <Button block color={'primary'} onClick={props.onClick}>
+                                                <FontAwesomeIcon icon={['fab', 'facebook']}/>{' '}
+                                                Login with facebook
+                                            </Button>
+                                        )}
+                                    />
+
                                 </Form>
                             </Col>
                         </Card>
