@@ -1,8 +1,14 @@
-const {autoCrud} = require('@dreesq/serpent');
+const {utils} = require('@dreesq/serpent');
 
-autoCrud('User', {
+utils.autoCrud('User', {
     middleware: [
         'auth',
-        'is:admin'
-    ]
+    ],
+    before(ctx, method, filters) {
+        if (method === 'find') {
+            return query => {
+                query.populate('role');
+            }
+        }
+    }
 });
