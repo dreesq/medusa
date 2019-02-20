@@ -78,7 +78,6 @@ class Auth extends Component {
                                     <hr/>
                                     <FacebookLogin
                                         appId={FB_APP_ID}
-                                        autoLoad
                                         callback={data => this.login(data, 'fb')}
                                         render={props => (
                                             <Button block color={'primary'} onClick={props.onClick}>

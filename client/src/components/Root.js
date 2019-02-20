@@ -16,6 +16,7 @@ export default class Root extends Component {
                     {/* ========== Admin =========== */}
                     <AuthRoute path={'/admin'} exact component={'Admin'} />
                     <AuthRoute path={'/admin/users'} component={'Admin/Users'} />
+                    <AuthRoute path={'/admin/roles'} component={'Admin/Roles'} />
 
                     {/* ========== User =========== */}
                     <AuthRoute path={'/'} exact component={'Panel'} />

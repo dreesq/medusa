@@ -67,7 +67,7 @@ class Menu extends Component {
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
-                            <UncontrolledDropdown nav inNavbar className={'ml-sm-5'}>
+                            <UncontrolledDropdown nav inNavbar className={'ml-sm-5 user-dropdown'}>
                                 <DropdownToggle nav caret>
                                     <div className="avatar">{acronym(user.name)}</div>
                                     {user.name}

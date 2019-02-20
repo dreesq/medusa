@@ -1,3 +1,5 @@
+import client from './client';
+
 /**
  * Helper for parsing form data
  * @param e
@@ -46,7 +48,7 @@ export const acronym = (str = '') => {
  * @returns {string}
  */
 
-export const parseQs = (string) => {
+export const parseQs = (string = '') => {
     let query = string.substring(1);
     let vars = query.split('&');
     let parsed = {};
@@ -57,4 +59,85 @@ export const parseQs = (string) => {
     }
 
     return parsed;
+};
+
+/**
+ * Json helper
+ * @param data
+ * @returns {*}
+ */
+
+export const json = data => {
+    if (Array.isArray(data) || typeof data === 'object') {
+        return JSON.stringify(data);
+    }
+
+    return JSON.parse(data);
+};
+
+/**
+ * Helper for confirming actions
+ * @param message
+ * @param ok
+ * @param failed
+ */
+
+export const confirm = (message, ok, failed) => {
+    client._event.emit('confirm', {
+        ok,
+        failed,
+        message
+    });
+};
+
+/**
+ * Deep clones an object
+ * @type {{}}
+ */
+
+export const clone = (obj = {}) => {
+    let copy;
+
+    if (null == obj || "object" != typeof obj) {
+        return obj;
+    }
+
+    if (obj instanceof Date) {
+        copy = new Date();
+        copy.setTime(obj.getTime());
+        return copy;
+    }
+
+    if (obj instanceof Array) {
+        copy = [];
+
+        for (let i = 0, len = obj.length; i < len; i++) {
+            copy[i] = clone(obj[i]);
+        }
+
+        return copy;
+    }
+
+    if (obj instanceof Object) {
+        copy = {};
+
+        for (let attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+        }
+
+        return copy;
+    }
+};
+
+/**
+ * Cleans an object
+ * @param obj
+ */
+
+export const clean = (obj = {}) => {
+    obj = clone(obj);
+    delete obj.__key;
+    delete obj.__original;
+    delete obj._id;
+    return obj;
 };

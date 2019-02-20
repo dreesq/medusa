@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import Layout from "../Misc/Layout";
-import {Table} from 'reactstrap';
+import {DropdownItem, DropdownMenu, DropdownToggle, Table, UncontrolledDropdown} from 'reactstrap';
 import client from '../../client';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {confirm} from "../../utils";
 
 export default class Users extends Component {
     state = {
@@ -41,6 +43,25 @@ export default class Users extends Component {
         });
     };
 
+    delete = (key, item) => {
+        confirm('Are you sure you want to delete this user?', async () => {
+            const {data, errors} = await client.removeAutoUser({
+                id: item._id
+            });
+
+            if (errors) {
+                return;
+            }
+
+            const users = [...this.state.users];
+            users.splice(key, 1);
+
+            this.setState({
+                users
+            });
+        });
+    };
+
     async componentDidMount() {
         await this.load();
     }
@@ -51,24 +72,44 @@ export default class Users extends Component {
         return (
             <Layout>
                 <h4>Users</h4>
-                <hr/>
-                <Table>
+                <Table className={'mt-4'}>
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                     {
                         users.map((user, key) => (
-                            <tr key={key}>
-                                <td>{user._id}</td>
-                                <td>{user.name}</td>
+                            <tr key={key} className={'middle-rows'}>
+                                <td>
+                                    {user.name}
+                                    <br/>
+                                    <small>{user._id}</small>
+                                </td>
                                 <td>{user.email}</td>
-                                <td>{user.role}</td>
+                                <td>{user.role || '-'}</td>
+                                <td className={'text-right'}>
+                                    <UncontrolledDropdown className={'actions-dropdown'}>
+                                        <DropdownToggle>
+                                            <FontAwesomeIcon icon={'ellipsis-h'}/>
+                                        </DropdownToggle>
+                                        <DropdownMenu>
+                                            <DropdownItem header>Actions</DropdownItem>
+                                            <DropdownItem onClick={e => this.edit(key, user)}>
+                                                <FontAwesomeIcon icon={'edit'}/>{' '}
+                                                Edit
+                                            </DropdownItem>
+                                            <DropdownItem onClick={e => this.delete(key, user)}>
+                                                <FontAwesomeIcon icon={'trash-alt'}/>{' '}
+                                                Delete
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </td>
                             </tr>
                         ))
                     }
