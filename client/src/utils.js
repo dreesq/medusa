@@ -83,7 +83,7 @@ export const json = data => {
  */
 
 export const confirm = (message, ok, failed) => {
-    client._event.emit('confirm', {
+    client.events.emit('confirm', {
         ok,
         failed,
         message

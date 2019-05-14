@@ -29,12 +29,12 @@ class Menu extends Component {
 
     logout = async () => {
         const {history} = this.props;
-        await client._auth.logout();
+        await client.auth.logout();
         history.push('/auth');
     };
 
     render() {
-        const {user} = client._auth;
+        const {user} = client.auth;
         const {open} = this.state;
 
         return (

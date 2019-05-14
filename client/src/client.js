@@ -1,5 +1,9 @@
 import Serpent from '@dreesq/serpent-client';
+import {API_URL} from "./constants";
+import axios from 'axios';
 
-export default new Serpent('http://localhost:3004', {
-    debug: true
+const client = new Serpent(API_URL, {
+    axios
 });
+
+export default client;

@@ -11,7 +11,7 @@ library.add(fab, faTimesCircle, faPlus, faEllipsisH, faTrashAlt, faEdit, faSearc
 
 window.client = client;
 
-client.ready(() => {
+client.setup().then(() => {
     ReactDOM.render(<Root />, document.getElementById('root'));
 });
 

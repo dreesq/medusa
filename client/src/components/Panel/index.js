@@ -4,7 +4,7 @@ import client from '../../client';
 
 export default class Panel extends Component {
     render() {
-        const {user} = client._auth;
+        const {user} = client.auth;
 
         return (
             <Layout>

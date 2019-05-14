@@ -26,7 +26,7 @@ class Register extends Component {
             return this.alert.toggle(errors);
         }
 
-        const {data: user, errors: authErrors} = await client._auth.login({
+        const {data: user, errors: authErrors} = await client.auth.login({
             ...parsed,
             provider: 'local'
         });

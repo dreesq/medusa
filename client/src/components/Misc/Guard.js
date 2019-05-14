@@ -29,13 +29,13 @@ export default (WrappedComponent, options = {}) => {
             };
 
             try {
-                const {data, errors} = await client._auth.getUser();
+                const {data, errors} = await client.auth.getUser();
 
                 if (errors) {
                     throw new Error();
                 }
 
-                const {is} = client._auth;
+                const {is} = client.auth;
 
                 if (options.role && !is(options.role)) {
                     return history.push(options.redirectFailed);

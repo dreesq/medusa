@@ -27,9 +27,10 @@ class Auth extends Component {
 
         this.loading(true);
 
-        const {data: user, errors} = await client._auth.login({
+        const {data: user, errors} = await client.auth.login({
             ...parsed,
-            provider
+            provider,
+            refresh: 0
         });
 
         this.loading(false);
