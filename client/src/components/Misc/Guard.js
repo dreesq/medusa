@@ -22,7 +22,7 @@ export default (WrappedComponent, options = {}) => {
         };
 
         async componentDidMount() {
-            const {history} = this.context.router;
+            const {history} = this.props;
 
             const opts = {
                 loading: false

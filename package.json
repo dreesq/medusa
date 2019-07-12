@@ -1,15 +1,15 @@
 {
-  "name": "@dreesq/medusa",
+  "name": "@dreesq/serpent-admin",
   "version": "1.0.0",
-  "description": "React application that uses serpent, providing perfect start application along with admin panel.",
+  "description": "Admin panel built using serpent, serpent-client and react",
   "main": "index.js",
   "scripts": {
     "server:start": "node index.js",
     "server:dev": "nodemon index.js",
     "client:dev": "cd ./client && react-scripts start",
     "client:prod": "cd ./client && react-scripts build",
-    "dev": "concurrently --kill-others \"npm run server:dev\" \"npm run client:dev\"",
-    "prod": "npm run client:prod && cross-env NODE_ENV=production npm run server:start"
+    "prod": "npm run client:prod && cross-env NODE_ENV=production npm run server:start",
+    "dev": "stmux -M -- [ [ \"npm run client:dev\" .. \"npm run server:dev\" ]]"
   },
   "repository": {
     "type": "git",
@@ -22,26 +22,26 @@
   },
   "homepage": "https://github.com/dreesq/medusa#readme",
   "dependencies": {
-    "@dreesq/serpent": "^1.8.8",
-    "@dreesq/serpent-client": "^1.6.9",
-    "@fortawesome/fontawesome-svg-core": "^1.2.14",
-    "@fortawesome/free-brands-svg-icons": "^5.7.1",
-    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@dreesq/serpent": "^2.0.6",
+    "@dreesq/serpent-client": "^1.7.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-brands-svg-icons": "^5.9.0",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "ajv": "^6.8.1",
-    "bootstrap": "^4.2.1",
+    "ajv": "^6.10.1",
+    "bootstrap": "^4.3.1",
     "cross-env": "^5.2.0",
-    "express": "^4.16.4",
-    "node-sass": "^4.11.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "express": "^4.17.1",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-facebook-login": "^4.1.1",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "reactstrap": "^7.1.0"
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "reactstrap": "^8.0.1"
   },
   "devDependencies": {
-    "concurrently": "^4.1.0",
-    "react-scripts": "^2.1.5"
+    "react-scripts": "^3.0.1",
+    "stmux": "^1.7.1"
   }
 }
