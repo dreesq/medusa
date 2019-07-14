@@ -8,7 +8,7 @@ export default class NotFound extends Component {
             <Container className={'mt-5'}>
                 <h4>Page not found</h4>
                 <p>The page you were trying to access could not be found.</p>
-                <p>Navigate to <Link to={'/'}>Home</Link> instead?</p>
+                <Link to={'/'}><p>Navigate to Home instead</p></Link>
             </Container>
         );
     }

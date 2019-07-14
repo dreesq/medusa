@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Layout from "../Misc/Layout";
 import {DropdownItem, DropdownMenu, DropdownToggle, Table, UncontrolledDropdown} from 'reactstrap';
 import client from '../../client';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {confirm} from "../../utils";
 
 export default class Users extends Component {
@@ -95,16 +94,14 @@ export default class Users extends Component {
                                 <td className={'text-right'}>
                                     <UncontrolledDropdown className={'actions-dropdown'}>
                                         <DropdownToggle>
-                                            <FontAwesomeIcon icon={'ellipsis-h'}/>
+                                            Options
                                         </DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem header>Actions</DropdownItem>
                                             <DropdownItem onClick={e => this.edit(key, user)}>
-                                                <FontAwesomeIcon icon={'edit'}/>{' '}
                                                 Edit
                                             </DropdownItem>
                                             <DropdownItem onClick={e => this.delete(key, user)}>
-                                                <FontAwesomeIcon icon={'trash-alt'}/>{' '}
                                                 Delete
                                             </DropdownItem>
                                         </DropdownMenu>

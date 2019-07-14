@@ -24,8 +24,8 @@ export default class Alert extends Component {
                             <ul>
                                 {capitalize(key)}:
                                 {
-                                    errors[key].map((error, subIndex) => (
-                                        <li key={subIndex}>{error}</li>
+                                    (Array.isArray(errors[key]) ? errors[key] : [errors[key]]).map((error, subIndex) => (
+                                        <li key={subIndex}>{typeof error !== 'string' ? JSON.stringify(error, null, 4) : error}</li>
                                     ))
                                 }
                             </ul>

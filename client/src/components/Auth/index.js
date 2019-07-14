@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {Container, Row, Col, Card, FormGroup, Input, Label, Button, Form} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import client from '../../client';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Alert from '../Misc/Alert';
 import {parse} from "../../utils";
 import {withRouter} from 'react-router-dom';
@@ -51,49 +49,46 @@ class Auth extends Component {
         const {loading} = this.state;
 
         return (
-            <Container>
-                <Row>
-                    <Col lg={{size: 4, offset: 4}}>
-                        <Card className={'p-4 mt-5'}>
-                            <div className={'text-center'}>
-                                <h4>Sign In</h4>
-                                <p>Don't have an account? <Link to={'/auth/register'}><u>Create one</u></Link></p>
-                            </div>
-                            <Alert ref={ref => this.alert = ref}/>
-                            <Col lg={12}>
-                                <Form onSubmit={this.login}>
-                                    <FormGroup>
-                                        <Label>Email</Label>
-                                        <Input type={'email'} name={'email'} autoFocus={true} placeholder={'me@email.com'}/>
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label>Password</Label>
-                                        <Input type={'password'} name={'password'} placeholder={'Password'}/>
-                                    </FormGroup>
-                                    <FormGroup className={'text-right'}>
-                                        <Link to={'auth/reset'}>Forgot password?</Link>
-                                    </FormGroup>
-                                    <Button block color={'primary'} disabled={loading}>
-                                        Submit
-                                    </Button>
-                                    <hr/>
-                                    <FacebookLogin
-                                        appId={FB_APP_ID}
-                                        callback={data => this.login(data, 'fb')}
-                                        render={props => (
-                                            <Button block color={'primary'} onClick={props.onClick}>
-                                                <FontAwesomeIcon icon={['fab', 'facebook']}/>{' '}
-                                                Login with facebook
-                                            </Button>
-                                        )}
-                                    />
+            <div>
+                <div lg={{size: 4, offset: 4}}>
+                    <div className={'p-4 mt-5'}>
+                        <div className={'text-center'}>
+                            <h4>Sign In</h4>
+                            <p>Don't have an account? <Link to={'/auth/register'}><u>Create one</u></Link></p>
+                        </div>
+                        <Alert ref={ref => this.alert = ref}/>
+                        <div lg={12}>
+                            <div onSubmit={this.login}>
+                                <div>
+                                    <div>Email</div>
+                                    <input type={'email'} name={'email'} autoFocus={true} placeholder={'me@email.com'}/>
+                                </div>
+                                <div>
+                                    <div>Password</div>
+                                    <input type={'password'} name={'password'} placeholder={'Password'}/>
+                                </div>
+                                <div className={'text-right'}>
+                                    <Link to={'auth/reset'}>Forgot password?</Link>
+                                </div>
+                                <button color={'primary'} disabled={loading}>
+                                    Submit
+                                </button>
+                                <hr/>
+                                <FacebookLogin
+                                    appId={FB_APP_ID}
+                                    callback={data => this.login(data, 'fb')}
+                                    render={props => (
+                                        <button block color={'primary'} onClick={props.onClick}>
+                                            Login with facebook
+                                        </button>
+                                    )}
+                                />
 
-                                </Form>
-                            </Col>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

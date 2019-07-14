@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 let timeout = false;
 
@@ -33,14 +32,12 @@ export default class Header extends Component {
                         onSearch && (
                             <div className={'search-input'}>
                                 <Input type={'text'} placeholder={'Search...'} onChange={this.onSearchChange}/>
-                                <FontAwesomeIcon icon={'search'}/>
                             </div>
                         )
                     }
                     {
                         onCreate && (
                             <Button onClick={onCreate} color={'primary'} className={'create-button'}>
-                                <FontAwesomeIcon icon={'plus'}/>{' '}
                                 {createText}
                             </Button>
                         )

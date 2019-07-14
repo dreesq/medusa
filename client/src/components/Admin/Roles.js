@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Layout, Loading, Entries, Modal, Header} from "../Misc";
 import {Table, Input, Form, FormGroup, Label, UncontrolledDropdown, DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
 import client from '../../client';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {confirm, clean} from "../../utils";
 
 export default class Roles extends Component {
@@ -160,16 +159,14 @@ export default class Roles extends Component {
                                     <td className={'text-right'}>
                                         <UncontrolledDropdown className={'actions-dropdown'}>
                                             <DropdownToggle>
-                                                <FontAwesomeIcon icon={'ellipsis-h'}/>
+                                                Options
                                             </DropdownToggle>
                                             <DropdownMenu>
                                                 <DropdownItem header>Actions</DropdownItem>
                                                 <DropdownItem onClick={e => this.edit(key, role)}>
-                                                    <FontAwesomeIcon icon={'edit'}/>{' '}
                                                     Edit
                                                 </DropdownItem>
                                                 <DropdownItem onClick={e => this.delete(key, role)}>
-                                                    <FontAwesomeIcon icon={'trash-alt'}/>{' '}
                                                     Delete
                                                 </DropdownItem>
                                             </DropdownMenu>

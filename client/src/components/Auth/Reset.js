@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
-import {Button, Card, Col, Container, Form, FormGroup, Input, Label, Row} from 'reactstrap';
 import Alert from '../Misc/Alert';
 import {withRouter} from 'react-router-dom';
 import {parse, parseQs} from '../../utils';

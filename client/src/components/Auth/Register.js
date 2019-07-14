@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {Button, Card, Col, Container, Form, FormGroup, Input, Label, Row} from 'reactstrap';
 import Alert from '../Misc/Alert';
 import {withRouter} from 'react-router-dom';
 import {parse} from '../../utils';
@@ -47,38 +46,34 @@ class Register extends Component {
         const {loading} = this.state;
 
         return (
-            <Container>
-                <Row>
-                    <Col lg={{size: 4, offset: 4}}>
-                        <Card className={'p-4 mt-5'}>
-                            <div className={'text-center'}>
-                                <h4>Sign Up</h4>
-                                <p>Already have an account? <Link to={'/auth'}><u>Sign in</u></Link> instead</p>
+            <div>
+                <div className={'p-4 mt-5'}>
+                    <div className={'text-center'}>
+                        <h4>Sign Up</h4>
+                        <p>Already have an account? <Link to={'/auth'}><u>Sign in</u></Link> instead</p>
+                    </div>
+                    <Alert ref={ref => this.alert = ref}/>
+                    <div lg={12}>
+                        <div onSubmit={this.register}>
+                            <div>
+                                <label>Name</label>
+                                <input type={'text'} name={'name'} autoFocus={true} placeholder={'Name'}/>
                             </div>
-                            <Alert ref={ref => this.alert = ref}/>
-                            <Col lg={12}>
-                                <Form onSubmit={this.register}>
-                                    <FormGroup>
-                                        <Label>Name</Label>
-                                        <Input type={'text'} name={'name'} autoFocus={true} placeholder={'Name'}/>
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label>Email</Label>
-                                        <Input type={'email'} name={'email'} placeholder={'me@email.com'}/>
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label>Password</Label>
-                                        <Input type={'password'} name={'password'} placeholder={'Password'}/>
-                                    </FormGroup>
-                                    <Button block color={'primary'} disabled={loading}>
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </Col>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
+                            <div>
+                                <label>Email</label>
+                                <input type={'email'} name={'email'} placeholder={'me@email.com'}/>
+                            </div>
+                            <div>
+                                <label>Password</label>
+                                <input type={'password'} name={'password'} placeholder={'Password'}/>
+                            </div>
+                            <button block color={'primary'} disabled={loading}>
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

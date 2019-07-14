@@ -40,34 +40,35 @@ class Menu extends Component {
         return (
             <Navbar color="light" light expand="md">
                 <Container>
-                    <NavbarBrand to="/" tag={RNLink}>medusa</NavbarBrand>
+                    <NavbarBrand to="/" tag={RNLink}>
+                        <img style={{height: 42}} src={'https://github.com/dreesq/serpent/raw/master/docs/res/logo.png'} />
+                    </NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={open} navbar>
-                        <Nav className="ml-auto align-items-sm-center" navbar>
+                        <Nav className="align-items-sm-center" navbar style={{width: '100%'}}>
                             <NavItem>
-                                <NavLink to="/" tag={RNLink} activeClassName="active" exact>Panel</NavLink>
+                                <NavLink to="/" tag={RNLink} activeClassName="active" exact>Dashboard</NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
-                                    Admin
+                                    Users
                                 </DropdownToggle>
                                 <DropdownMenu>
                                     <DropdownItem>
-                                        <Link to={'/admin'} className={'unstyled'}>Dashboard</Link>
-                                    </DropdownItem>
-                                    <DropdownItem divider={true}/>
-                                    <DropdownItem>
-                                        <Link to={'/admin/users'} className={'unstyled'}>Users</Link>
+                                        <Link to={'/users'} className={'unstyled'}>Users</Link>
                                     </DropdownItem>
                                     <DropdownItem>
-                                        <Link to={'/admin/roles'} className={'unstyled'}>Roles</Link>
+                                        <Link to={'/roles'} className={'unstyled'}>Roles</Link>
                                     </DropdownItem>
                                     <DropdownItem>
-                                        <Link to={'/admin/permissions'} className={'unstyled'}>Permissions</Link>
+                                        <Link to={'/permissions'} className={'unstyled'}>Permissions</Link>
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
-                            <UncontrolledDropdown nav inNavbar className={'ml-sm-5 user-dropdown'}>
+                            <NavItem>
+                                <NavLink to="/translations" tag={RNLink} activeClassName="active" exact>Translations</NavLink>
+                            </NavItem>
+                            <UncontrolledDropdown nav inNavbar className={'ml-auto user-dropdown'}>
                                 <DropdownToggle nav caret>
                                     <div className="avatar">{acronym(user.name)}</div>
                                     {user.name}
