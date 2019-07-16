@@ -61,10 +61,10 @@ class Reset extends Component {
         const {loading, step, finished} = this.state;
 
         return (
-            <Container>
-                <Row>
-                    <Col lg={{size: 4, offset: 4}}>
-                        <Card className={'p-4 mt-5'}>
+            <div>
+                <div>
+                    <div lg={{size: 4, offset: 4}}>
+                        <div className={'p-4 mt-5'}>
                             <div className={'text-center'}>
                                 <h4>Reset Password</h4>
                                 <p>Don't have an account? <Link to={'/auth/register'}><u>Sign up</u></Link> instead</p>
@@ -88,41 +88,41 @@ class Reset extends Component {
                             }
                             {
                                 !finished && (
-                                    <Col lg={12}>
-                                        <Form onSubmit={this.reset}>
+                                    <div lg={12}>
+                                        <form onSubmit={this.reset}>
                                             {
                                                 step === 0 && (
-                                                    <FormGroup>
-                                                        <Label>Email</Label>
-                                                        <Input type={'email'} name={'email'} autoFocus={true} placeholder={'Email'}/>
-                                                    </FormGroup>
+                                                    <div>
+                                                        <label>Email</label>
+                                                        <input type={'email'} name={'email'} autoFocus={true} placeholder={'Email'}/>
+                                                    </div>
                                                 )
                                             }
                                             {
                                                 step === 1 && (
                                                     <Fragment>
-                                                        <FormGroup>
-                                                            <Label>Password</Label>
-                                                            <Input type={'password'} name={'password'} placeholder={'Password'}/>
-                                                        </FormGroup>
-                                                        <FormGroup>
-                                                            <Label>Repeat Password</Label>
-                                                            <Input type={'password'} name={'repeatPassword'} placeholder={'Repeat Password'}/>
-                                                        </FormGroup>
+                                                        <div>
+                                                            <label>Password</label>
+                                                            <input type={'password'} name={'password'} placeholder={'Password'}/>
+                                                        </div>
+                                                        <div>
+                                                            <label>Repeat Password</label>
+                                                            <input type={'password'} name={'repeatPassword'} placeholder={'Repeat Password'}/>
+                                                        </div>
                                                     </Fragment>
                                                 )
                                             }
-                                            <Button block color={'primary'} disabled={loading}>
+                                            <button block color={'primary'} disabled={loading}>
                                                 Submit
-                                            </Button>
-                                        </Form>
-                                    </Col>
+                                            </button>
+                                        </form>
+                                    </div>
                                 )
                             }
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
