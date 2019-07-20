@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Modal as BsModal, ModalHeader, ModalBody, ModalFooter, Button} from 'reactstrap';
 
 export default class Modal extends Component {
     state = {
@@ -17,16 +16,16 @@ export default class Modal extends Component {
         const {children, title, onAction, onCancel, actionText = 'Handle', actionColor = 'primary'} = this.props;
 
         return (
-            <BsModal isOpen={open} toggle={onCancel ? onCancel : this.toggle}>
-                <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
-                <ModalBody>
+            <div isOpen={open} toggle={onCancel ? onCancel : this.toggle}>
+                <div toggle={this.toggle}>{title}</div>
+                <div>
                     {children}
-                </ModalBody>
-                <ModalFooter>
-                    <Button color={actionColor} onClick={onAction}>{actionText}</Button>{' '}
-                    <Button color="secondary" onClick={onCancel ? onCancel : this.toggle}>Cancel</Button>
-                </ModalFooter>
-            </BsModal>
+                </div>
+                <div>
+                    <button color={actionColor} onClick={onAction}>{actionText}</button>{' '}
+                    <button color="secondary" onClick={onCancel ? onCancel : this.toggle}>Cancel</button>
+                </div>
+            </div>
         );
     }
 }

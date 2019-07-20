@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Layout from "../Misc/Layout";
-import {DropdownItem, DropdownMenu, DropdownToggle, Table, UncontrolledDropdown} from 'reactstrap';
 import client from '../../client';
 import {confirm} from "../../utils";
 
@@ -71,7 +70,7 @@ export default class Users extends Component {
         return (
             <Layout>
                 <h4>Users</h4>
-                <Table className={'mt-4'}>
+                <table className={'mt-4'}>
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -92,26 +91,26 @@ export default class Users extends Component {
                                 <td>{user.email}</td>
                                 <td>{user.role || '-'}</td>
                                 <td className={'text-right'}>
-                                    <UncontrolledDropdown className={'actions-dropdown'}>
-                                        <DropdownToggle>
+                                    <div className={'actions-dropdown'}>
+                                        <div>
                                             Options
-                                        </DropdownToggle>
-                                        <DropdownMenu>
-                                            <DropdownItem header>Actions</DropdownItem>
-                                            <DropdownItem onClick={e => this.edit(key, user)}>
+                                        </div>
+                                        <div>
+                                            <div header>Actions</div>
+                                            <button onClick={e => this.edit(key, user)}>
                                                 Edit
-                                            </DropdownItem>
-                                            <DropdownItem onClick={e => this.delete(key, user)}>
+                                            </button>
+                                            <button onClick={e => this.delete(key, user)}>
                                                 Delete
-                                            </DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         ))
                     }
                     </tbody>
-                </Table>
+                </table>
             </Layout>
         );
     }

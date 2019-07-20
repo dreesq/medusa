@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Layout, Loading, Entries, Modal, Header} from "../Misc";
-import {Table, Input, Form, FormGroup, Label, UncontrolledDropdown, DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
 import client from '../../client';
 import {confirm, clean} from "../../utils";
 
@@ -130,17 +129,17 @@ export default class Roles extends Component {
 
         return (
             <Layout>
-                <Modal ref={ref => this.modal = ref} {...modalProps}>
-                    <Form onSubmit={this.onAction}>
-                        <FormGroup>
-                            <Label>Name</Label>
-                            <Input type={'text'} name={'name'} autoFocus={true} onChange={this.onChange} value={payload.name} placeholder={'Role'}/>
-                        </FormGroup>
-                    </Form>
-                </Modal>
+                <div ref={ref => this.modal = ref} {...modalProps}>
+                    <form onSubmit={this.onAction}>
+                        <div>
+                            <label>Name</label>
+                            <input type={'text'} name={'name'} autoFocus={true} onChange={this.onChange} value={payload.name} placeholder={'Role'}/>
+                        </div>
+                    </form>
+                </div>
                 <Header title={'Roles'} onSearch={search => this.load(1, {search})} onCreate={this.showModal} />
                 <Entries entries={roles} onAdd={this.showModal} loading={loading}>
-                    <Table className={'mt-4'}>
+                    <table className={'mt-4'}>
                         <thead>
                         <tr>
                             <th>Name</th>
@@ -157,26 +156,26 @@ export default class Roles extends Component {
                                         <small>{role._id}</small>
                                     </td>
                                     <td className={'text-right'}>
-                                        <UncontrolledDropdown className={'actions-dropdown'}>
-                                            <DropdownToggle>
+                                        <div className={'actions-dropdown'}>
+                                            <div>
                                                 Options
-                                            </DropdownToggle>
-                                            <DropdownMenu>
-                                                <DropdownItem header>Actions</DropdownItem>
-                                                <DropdownItem onClick={e => this.edit(key, role)}>
+                                            </div>
+                                            <div>
+                                                <div header>Actions</div>
+                                                <button onClick={e => this.edit(key, role)}>
                                                     Edit
-                                                </DropdownItem>
-                                                <DropdownItem onClick={e => this.delete(key, role)}>
+                                                </button>
+                                                <button onClick={e => this.delete(key, role)}>
                                                     Delete
-                                                </DropdownItem>
-                                            </DropdownMenu>
-                                        </UncontrolledDropdown>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             ))
                         }
                         </tbody>
-                    </Table>
+                    </table>
                 </Entries>
             </Layout>
         );

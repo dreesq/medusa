@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Button} from 'reactstrap';
 import {Loading} from './';
 
 export default class Entries extends Component {
@@ -19,7 +18,7 @@ export default class Entries extends Component {
                 <div className={'no-entries'}>
                     <h1>No entries</h1>
                     <p>There are no entries added yet.</p>
-                    <Button onClick={onAdd} color={'primary'}>Add one</Button>
+                    <button onClick={onAdd} color={'primary'}>Add one</button>
                 </div>
             );
         }

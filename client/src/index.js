@@ -9,4 +9,3 @@ window.client = client;
 client.setup().then(() => {
     ReactDOM.render(<Root />, document.getElementById('root'));
 });
-

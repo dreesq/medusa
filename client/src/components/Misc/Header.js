@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 
 let timeout = false;
 
@@ -31,15 +30,15 @@ export default class Header extends Component {
                     {
                         onSearch && (
                             <div className={'search-input'}>
-                                <Input type={'text'} placeholder={'Search...'} onChange={this.onSearchChange}/>
+                                <input type={'text'} placeholder={'Search...'} onChange={this.onSearchChange}/>
                             </div>
                         )
                     }
                     {
                         onCreate && (
-                            <Button onClick={onCreate} color={'primary'} className={'create-button'}>
+                            <button onClick={onCreate} color={'primary'} className={'create-button'}>
                                 {createText}
-                            </Button>
+                            </button>
                         )
                     }
                 </div>

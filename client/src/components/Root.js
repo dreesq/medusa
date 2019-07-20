@@ -1,20 +1,33 @@
 import React, {Component} from 'react';
-import subatomic from 'subatomic/styled-components';
-
-import {Route, Switch} from 'react-router';
-import {BrowserRouter as Router} from 'react-router-dom';
+import {Base} from '@dreesq/sigma';
+import {
+    BrowserRouter,
+    Route,
+    Switch
+} from 'react-router-dom';
 
 import Async from './Misc/Async';
 import Guard from './Misc/Guard';
 
-const AuthRoute = ({path, component, exact = false}) => <Route path={path} exact={exact} component={Guard(Async(component), {redirectFailed: '/auth'})} />;
-const Subatomic = subatomic('element');
+const AuthRoute = ({path, component, exact = false}) => (
+    <Route
+        path={path}
+        exact={exact}
+        component={Guard(
+            Async(component),
+    {
+                redirectFailed: '/auth'
+            }
+        )}
+    />
+);
 
 export default class Root extends Component {
     render() {
         return (
-            <Router>
-                <Subatomic>
+            <>
+                <Base/>
+                <BrowserRouter>
                     <Switch>
                         {/* ========== Admin =========== */}
                         <AuthRoute path={'/'} exact component={'Admin'} />
@@ -35,8 +48,8 @@ export default class Root extends Component {
                         {/* ========== Other =========== */}
                         <Route path={`*`} component={Async('Misc/NotFound')}/>
                     </Switch>
-                </Subatomic>
-            </Router>
+                </BrowserRouter>
+            </>
         );
     }
 }

@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import {Alert as BsAlert} from 'reactstrap';
 import {capitalize} from "../../utils";
 
 export default class Alert extends Component {
@@ -17,7 +16,7 @@ export default class Alert extends Component {
         const {errors} = this.state;
 
         return (
-            <BsAlert color="danger" isOpen={!!errors} toggle={e => this.toggle(false)}>
+            <div color="danger" isOpen={!!errors} toggle={e => this.toggle(false)}>
                 {
                     Object.keys(errors).map((key, index) => (
                         <Fragment key={index}>
@@ -32,7 +31,7 @@ export default class Alert extends Component {
                         </Fragment>
                     ))
                 }
-            </BsAlert>
+            </div>
         );
     }
 }
