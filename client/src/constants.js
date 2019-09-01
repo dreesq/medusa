@@ -1,4 +1,2 @@
-export const FB_APP_ID = '405057493600089';
-export const API_URL = 'http://localhost:3004';
-
+export const API_URL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3004/api';
 export const EVENT_CONFIRM = 'confirm';

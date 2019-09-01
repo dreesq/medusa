@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Context from './Context';
 import PropTypes from 'prop-types';
-import client from '../../client';
 
 /**
  * HoC handling route guard
@@ -18,10 +17,12 @@ export default (WrappedComponent, options = {}) => {
         };
 
         static contextTypes = {
-            router: PropTypes.object.isRequired
+            router: PropTypes.object.isRequired,
+            client: PropTypes.object.isRequired
         };
 
         async componentDidMount() {
+            const {client} = this.context;
             const {history} = this.props;
 
             const opts = {

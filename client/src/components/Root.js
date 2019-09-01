@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Base} from '@dreesq/sigma';
+import {Base, Context} from '@dreesq/sigma';
 import {
     BrowserRouter,
     Route,
     Switch
 } from 'react-router-dom';
 
+import client from '../client';
 import Async from './Misc/Async';
 import Guard from './Misc/Guard';
 
@@ -25,8 +26,8 @@ const AuthRoute = ({path, component, exact = false}) => (
 export default class Root extends Component {
     render() {
         return (
-            <>
-                <Base/>
+            <Context client={client} debug={process.env.NODE_ENV !== 'production'}>
+                <Base />
                 <BrowserRouter>
                     <Switch>
                         {/* ========== Admin =========== */}
@@ -49,7 +50,7 @@ export default class Root extends Component {
                         <Route path={`*`} component={Async('Misc/NotFound')}/>
                     </Switch>
                 </BrowserRouter>
-            </>
+            </Context>
         );
     }
 }

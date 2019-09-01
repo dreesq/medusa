@@ -3,6 +3,7 @@ import client from '../../client';
 import {acronym} from "../../utils";
 import {withRouter} from "react-router-dom";
 import {NavLink as RNLink, Link} from "react-router-dom";
+import {Nav} from "@dreesq/sigma";
 
 class Menu extends Component {
     state = {
@@ -24,11 +25,11 @@ class Menu extends Component {
         const {open} = this.state;
 
         return (
-            <nav color="light" light expand="md">
+            <Nav color="light" light expand="md">
                 <div>
-                    <div to="/" tag={RNLink}>
+                    <RNLink>
                         <img style={{height: 42}} src={'https://github.com/dreesq/serpent/raw/master/docs/res/logo.png'} />
-                    </div>
+                    </RNLink>
                     <div onClick={this.toggle} />
                     <div isOpen={open} navbar>
                         <nav className="align-items-sm-center" navbar style={{width: '100%'}}>
@@ -71,7 +72,7 @@ class Menu extends Component {
                         </nav>
                     </div>
                 </div>
-            </nav>
+            </Nav>
         );
     }
 }

@@ -3,4 +3,3 @@
  */
 
 require('./admin');
-require('./panel');

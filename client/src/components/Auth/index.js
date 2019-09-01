@@ -4,8 +4,7 @@ import client from '../../client';
 import Alert from '../Misc/Alert';
 import {parse} from "../../utils";
 import {withRouter} from 'react-router-dom';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import {FB_APP_ID} from "../../constants";
+import {Button, Col, Container, Input, Form, Group, Label, Text, Sigma as S, ActionAlert} from "@dreesq/sigma";
 
 class Auth extends Component {
     state = {
@@ -34,7 +33,7 @@ class Auth extends Component {
         this.loading(false);
 
         if (errors) {
-            return this.alert.toggle(errors);
+            return;
         }
 
         const {history} = this.props;
@@ -49,46 +48,34 @@ class Auth extends Component {
         const {loading} = this.state;
 
         return (
-            <div>
-                <div lg={{size: 4, offset: 4}}>
-                    <div className={'p-4 mt-5'}>
-                        <div className={'text-center'}>
-                            <h4>Sign In</h4>
-                            <p>Don't have an account? <Link to={'/auth/register'}><u>Create one</u></Link></p>
-                        </div>
-                        <Alert ref={ref => this.alert = ref}/>
-                        <div lg={12}>
-                            <div onSubmit={this.login}>
-                                <div>
-                                    <div>Email</div>
-                                    <input type={'email'} name={'email'} autoFocus={true} placeholder={'me@email.com'}/>
-                                </div>
-                                <div>
-                                    <div>Password</div>
-                                    <input type={'password'} name={'password'} placeholder={'Password'}/>
-                                </div>
-                                <div className={'text-right'}>
-                                    <Link to={'auth/reset'}>Forgot password?</Link>
-                                </div>
-                                <button color={'primary'} disabled={loading}>
-                                    Submit
-                                </button>
-                                <hr/>
-                                <FacebookLogin
-                                    appId={FB_APP_ID}
-                                    callback={data => this.login(data, 'fb')}
-                                    render={props => (
-                                        <button block color={'primary'} onClick={props.onClick}>
-                                            Login with facebook
-                                        </button>
-                                    )}
-                                />
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Container>
+                <Col
+                    maxWidth={450}
+                    m={[0, 'auto']}
+                >
+                    <S textAlign={'center'}>
+                        <Text as={'h1'} mt={120}>Sign In</Text>
+                        <p>Don't have an account? <Link to={'/auth/register'}>Create one</Link></p>
+                    </S>
+                    <ActionAlert actions={['login']}/>
+                    <Form onSubmit={this.login}>
+                        <Group>
+                            <Label>Email</Label>
+                            <Input type={'email'} name={'email'} autoFocus={true} placeholder={'me@email.com'}/>
+                        </Group>
+                        <Group>
+                            <Label>Password</Label>
+                            <Input type={'password'} name={'password'} placeholder={'Password'}/>
+                        </Group>
+                        <S textAlign={'right'}>
+                            <Link to={'auth/reset'}>Forgot password?</Link>
+                        </S>
+                        <Button color={'primary'} disabled={loading} mt={20} block>
+                            Login
+                        </Button>
+                    </Form>
+                </Col>
+            </Container>
         );
     }
 }
