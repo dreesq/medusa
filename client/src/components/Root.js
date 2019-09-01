@@ -26,7 +26,7 @@ const AuthRoute = ({path, component, exact = false}) => (
 export default class Root extends Component {
     render() {
         return (
-            <Context client={client} debug={process.env.NODE_ENV !== 'production'}>
+            <Context client={client}>
                 <Base />
                 <BrowserRouter>
                     <Switch>

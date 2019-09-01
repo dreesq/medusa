@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
 import Layout from "../Misc/Layout";
-import client from '../../client';
+import PropTypes from 'prop-types';
+import {Text} from "@dreesq/sigma";
 
 export default class Admin extends Component {
+    static contextTypes = {
+        client: PropTypes.object
+    };
+
     render() {
+        const {client} = this.context;
         const {user} = client.auth;
 
         return (
             <Layout>
-                <h1>Admin</h1>
-                <p>Welcome back <strong>{user.name}</strong>!</p>
+                <Text as={'h1'} mb={5} fontWeight={'500'}>Dashboard</Text>
+                <Text as={'p'} mt={0}>Welcome back <strong>{user.name}</strong></Text>
             </Layout>
         );
     }

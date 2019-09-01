@@ -17,7 +17,7 @@ export default (WrappedComponent, options = {}) => {
         };
 
         static contextTypes = {
-            router: PropTypes.object.isRequired,
+            router: PropTypes.object,
             client: PropTypes.object.isRequired
         };
 
@@ -30,7 +30,7 @@ export default (WrappedComponent, options = {}) => {
             };
 
             try {
-                const {data, errors} = await client.auth.getUser();
+                const {errors} = await client.auth.getUser();
 
                 if (errors) {
                     throw new Error();

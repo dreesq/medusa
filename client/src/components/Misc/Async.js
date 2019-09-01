@@ -14,7 +14,7 @@ export default path => {
             LoadedComponent: Async.Component
         };
 
-        async componentWillMount() {
+        async UNSAFE_componentWillMount() {
             const {LoadedComponent} = this.state;
 
             if (!LoadedComponent) {

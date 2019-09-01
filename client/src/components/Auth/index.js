@@ -1,10 +1,20 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import client from '../../client';
-import Alert from '../Misc/Alert';
 import {parse} from "../../utils";
 import {withRouter} from 'react-router-dom';
-import {Button, Col, Container, Input, Form, Group, Label, Text, Sigma as S, ActionAlert} from "@dreesq/sigma";
+import {
+    Button,
+    Col,
+    Container,
+    Input,
+    Form,
+    Group,
+    Label,
+    Text,
+    Sigma as S,
+    ActionAlert
+} from "@dreesq/sigma";
 
 class Auth extends Component {
     state = {
@@ -24,7 +34,7 @@ class Auth extends Component {
 
         this.loading(true);
 
-        const {data: user, errors} = await client.auth.login({
+        const {errors} = await client.auth.login({
             ...parsed,
             provider,
             refresh: 0

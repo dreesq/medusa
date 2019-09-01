@@ -5,7 +5,6 @@ import Layout from './Layout';
 import Entries from './Entries';
 import Modal from './Modal';
 import Header from './Header';
-import Confirm from './Confirm';
 
 export {
     Alert,
@@ -14,6 +13,5 @@ export {
     Layout,
     Entries,
     Modal,
-    Header,
-    Confirm
+    Header
 }

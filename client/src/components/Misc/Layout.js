@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Menu, Confirm} from "./";
+import {Menu} from "./";
+import {Container, Row} from "@dreesq/sigma";
 
 export default class Layout extends Component {
     render() {
@@ -8,8 +9,9 @@ export default class Layout extends Component {
         return (
             <>
                 <Menu/>
-                <Confirm/>
-                {children}
+                <Container>
+                    {children}
+                </Container>
             </>
         );
     }

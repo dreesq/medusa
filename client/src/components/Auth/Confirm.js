@@ -2,12 +2,23 @@ import React, {Component} from 'react';
 import client from "../../client";
 import {Link, withRouter} from "react-router-dom";
 import {parseQs} from "../../utils";
-import Alert from '../Misc/Alert';
+import PropTypes from 'prop-types';
+import {
+    ActionAlert,
+    Sigma as S,
+    Text,
+    Container,
+    Col
+} from "@dreesq/sigma";
 
 class Confirm extends Component {
     state = {
         loading: false,
         finished: false
+    };
+
+    static contextTypes = {
+        client: PropTypes.object
     };
 
     async componentDidMount() {
@@ -38,23 +49,28 @@ class Confirm extends Component {
         const {loading, finished} = this.state;
 
         return (
-            <div>
-                <div className={'text-center'}>
-                    <h4>Confirm Account</h4>
-                </div>
-                <Alert ref={ref => this.alert = ref}/>
-                {
-                    loading && (
-                        <p className={'text-warning'}>Hold on while we confirm your account.</p>
-                    )
-                }
-                {
-                    finished && (
-                        <p className={'text-success'}>Account was successfully confirmed. <br/><Link
-                            to={'/'}>Navigate to dashboard page</Link></p>
-                    )
-                }
-            </div>
+            <Container>
+                <Col
+                    maxWidth={450}
+                    m={[0, 'auto']}
+                >
+                    <S textAlign={'center'}>
+                        <Text as={'h1'} mt={120}>Confirm Account</Text>
+                    </S>
+                    <ActionAlert actions={['confirmUser']}/>
+                    {
+                        loading && (
+                            <Text className={'text-warning'} color={'primary'}>Hold on while we confirm your account.</Text>
+                        )
+                    }
+                    {
+                        finished && (
+                            <Text className={'text-success'} color={'success'}>Account was successfully confirmed. <br/><Link
+                                to={'/'}>Navigate to dashboard</Link></Text>
+                        )
+                    }
+                </Col>
+            </Container>
         );
     }
 }
