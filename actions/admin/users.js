@@ -6,7 +6,8 @@ const userSchema = async method => utils.form({
     name: {
         label: 'Name *',
         placeholder: 'Name',
-        validation: 'required|string|min:5'
+        validation: 'required|string|min:5',
+        size: '7'
     },
     locale: {
         label: 'Locale',
@@ -19,24 +20,28 @@ const userSchema = async method => utils.form({
             }
 
         ],
-        value: 'en'
+        value: 'en',
+        size: '3'
     },
     email: {
         label: 'Email',
         placeholder: 'Email',
         type: 'email',
-        validation: 'email|min:5|unique:user,email'
+        validation: 'email|min:5|unique:user,email',
+        ifChanged: true
     },
     password: {
         label: 'Password *',
         placeholder: 'Password',
         type: 'password',
-        validation: 'string|min:5'
+        validation: 'string|min:5',
+        ifChanged: true
     },
     role: {
         label: 'Role',
         type: 'autocomplete',
-        values: 'roleAutocomplete'
+        values: 'roleAutocomplete',
+        size: '5'
     },
     status: {
         label: 'Status',
@@ -45,7 +50,8 @@ const userSchema = async method => utils.form({
             name: USER_STATUS_MAP[key],
             value: key
         })),
-        value: 1
+        value: 1,
+        size: '5'
     }
 });
 
