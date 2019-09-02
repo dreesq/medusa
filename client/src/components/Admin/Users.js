@@ -12,18 +12,28 @@ export default class Users extends Component {
         );
     };
 
-    renderStatus = value => {
+    renderStatus = (value, row) => {
         let color = 'primary';
 
-        if (value === 'Inactive') {
+        if (row.status === 0) {
             color = 'warning';
-        } else if (value === 'Active') {
+        } else if (row.status === 1) {
             color = 'success';
         }
 
         return (
-            <Tag color={color}>{value}</Tag>
+            <Tag color={color}>{row.statusName}</Tag>
         )
+    }
+
+    renderPermissions = (permissions = []) => {
+        if (!permissions.length) {
+            return 'N/A';
+        }
+
+        return permissions.map((permission, key) => (
+            <Tag color={'primary'} key={key} m={3} ml={key === 0 ? 0 : 3}>{permission.name}</Tag>
+        ))
     }
 
     render() {
@@ -43,10 +53,11 @@ export default class Users extends Component {
                         title={'Users'}
                         collection={'User'}
                         filters={filters}
+                        modalWidth={620}
                         fields={[
                             ['name', 'Name', this.renderInfo, true],
                             ['role', 'Role', role => role ? role.name : 'N/A', true],
-                            ['permissions', 'Permissions', permissions => permissions.join(', ') || 'N/A'],
+                            ['permissions', 'Permissions', this.renderPermissions],
                             ['locale', 'Locale', locale => locale ? locale.toUpperCase() : 'N/A', true],
                             ['status', 'Status', this.renderStatus, true]
                         ]}

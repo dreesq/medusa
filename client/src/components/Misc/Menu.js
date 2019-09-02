@@ -81,7 +81,6 @@ class Menu extends Component {
                                                         d={'flex'}
                                                         alignItems={'center'}
                                                         justifyContent={'center'}
-                                                        fontWeight={'600'}
                                                     >
                                                         {acronym(user.name)}
                                                     </S>

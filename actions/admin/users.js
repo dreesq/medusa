@@ -1,59 +1,7 @@
 const {utils, config, Constants} = require('@dreesq/serpent');
-const {USER_STATUS_MAP, USER_STATUS_ACTIVE} = Constants;
 const bcrypt = require('bcryptjs');
-
-const userSchema = async method => utils.form({
-    name: {
-        label: 'Name *',
-        placeholder: 'Name',
-        validation: 'required|string|min:5',
-        size: '7'
-    },
-    locale: {
-        label: 'Locale',
-        type: 'select',
-        validation: 'required|string|min:2',
-        values: [
-            {
-                name: 'EN',
-                value: 'en'
-            }
-
-        ],
-        value: 'en',
-        size: '3'
-    },
-    email: {
-        label: 'Email',
-        placeholder: 'Email',
-        type: 'email',
-        validation: 'email|min:5|unique:user,email',
-        ifChanged: true
-    },
-    password: {
-        label: 'Password *',
-        placeholder: 'Password',
-        type: 'password',
-        validation: 'string|min:5',
-        ifChanged: true
-    },
-    role: {
-        label: 'Role',
-        type: 'autocomplete',
-        values: 'roleAutocomplete',
-        size: '5'
-    },
-    status: {
-        label: 'Status',
-        type: 'select',
-        values: Object.keys(USER_STATUS_MAP).map(key => ({
-            name: USER_STATUS_MAP[key],
-            value: key
-        })),
-        value: 1,
-        size: '5'
-    }
-});
+const {userSchema} = require('./_schemas/user');
+const {USER_STATUS_MAP} = Constants;
 
 utils.autoCrud('User', {
     middleware: [
@@ -75,12 +23,24 @@ utils.autoCrud('User', {
         }
 
         if (method === 'find') {
+            let search = utils.get(input, 'filters.search', false);
+
             return query => {
+                if (search) {
+                    query.or(
+                        [
+                            {
+                                name: new RegExp(search, 'i')
+                            }
+                        ]
+                    );
+                }
+
                 query.populate('role').populate('permissions');
             }
         }
 
-        if (method === 'update' || method === 'create') {
+        if ((method === 'update' || method === 'create') && input.password) {
             input.password = await bcrypt.hash(input.password, 10);
         }
     },
@@ -88,8 +48,11 @@ utils.autoCrud('User', {
         if (method === 'find') {
             result.data = result.data.map(item => {
                 item = item.toJSON();
-                item.status = USER_STATUS_MAP[item.status];
-                item.permissions = ['A', 'B', 'C'];
+                item.statusName = USER_STATUS_MAP[item.status];
+                item.permissions = item.permissions.map(permission => ({
+                    value: permission._id,
+                    name: permission.name
+                }));
                 return item;
             });
         }
@@ -110,7 +73,12 @@ config({
 })(
     async ({db, input}) => {
         const {Role} = db;
-        return await Role.find().where('name', new RegExp(input.text, 'i'));
+        const roles = await Role.find().where('name', new RegExp(input.text, 'i'));
+
+        return roles.map(role => ({
+            name: role.name,
+            value: role._id
+        }));
     }
 );
 
@@ -139,3 +107,72 @@ utils.autoCrud('Role', {
         return filters;
     }
 });
+
+utils.autoCrud('Permission', {
+    middleware: [
+        'auth:required',
+    ],
+    schema: utils.form({
+        name: {
+            label: 'Name',
+            placeholder: 'Name',
+            validation: 'required|string|min:3'
+        },
+        roleId: {
+            label: 'Role',
+            placeholder: 'Role',
+            type: 'autocomplete',
+            validation: 'required|string',
+            values: 'roleAutocomplete'
+        }
+    }),
+    before({input}, method, filters) {
+        if (method === 'find') {
+            return query => {
+                if (filters.search) {
+                    query.where('name', new RegExp(filters.search, 'i'));
+                }
+
+                query.populate('roleId');
+            };
+        }
+
+        return filters;
+    },
+    async after(ctx, method, result) {
+        if (method === 'find') {
+            result.data = result.data.map(item => {
+                item = item.toJSON();
+
+                if (item.roleId) {
+                    item.roleName = item.roleId.name;
+                    item.roleId = item.roleId._id;
+                }
+
+                return item;
+            });
+        }
+
+        return result;
+    }
+});
+
+config({
+    name: 'permissionAutocomplete',
+    input: {
+        text: 'required|string'
+    },
+    middleware: [
+        'auth:required'
+    ]
+})(
+    async ({db, input}) => {
+        const {Permission} = db;
+        const permissions = await Permission.find().where('name', new RegExp(input.text, 'i'));
+
+        return permissions.map(permission => ({
+            name: permission.name,
+            value: permission._id
+        }));
+    }
+);
