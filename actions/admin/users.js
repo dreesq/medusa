@@ -1,5 +1,53 @@
-const {utils} = require('@dreesq/serpent');
-const {USER_STATUS_MAP, USER_STATUS_ACTIVE} = require('@dreesq/serpent/constants');
+const {utils, config, Constants} = require('@dreesq/serpent');
+const {USER_STATUS_MAP, USER_STATUS_ACTIVE} = Constants;
+const bcrypt = require('bcryptjs');
+
+const userSchema = async method => utils.form({
+    name: {
+        label: 'Name *',
+        placeholder: 'Name',
+        validation: 'required|string|min:5'
+    },
+    locale: {
+        label: 'Locale',
+        type: 'select',
+        validation: 'required|string|min:2',
+        values: [
+            {
+                name: 'EN',
+                value: 'en'
+            }
+
+        ],
+        value: 'en'
+    },
+    email: {
+        label: 'Email',
+        placeholder: 'Email',
+        type: 'email',
+        validation: 'email|min:5|unique:user,email'
+    },
+    password: {
+        label: 'Password *',
+        placeholder: 'Password',
+        type: 'password',
+        validation: 'string|min:5'
+    },
+    role: {
+        label: 'Role',
+        type: 'autocomplete',
+        values: 'roleAutocomplete'
+    },
+    status: {
+        label: 'Status',
+        type: 'select',
+        values: Object.keys(USER_STATUS_MAP).map(key => ({
+            name: USER_STATUS_MAP[key],
+            value: key
+        })),
+        value: 1
+    }
+});
 
 utils.autoCrud('User', {
     middleware: [
@@ -14,47 +62,20 @@ utils.autoCrud('User', {
         'email',
         'permissions'
     ],
-    schema: utils.form({
-        name: {
-            label: 'Name *',
-            placeholder: 'Name',
-            name: 'name',
-            type: 'text',
-            validation: 'required|string|min:5'
-        },
-        email: {
-            label: 'Email',
-            placeholder: 'Email',
-            type: 'email',
-            validation: 'email|min:5'
-        },
-        password: {
-            label: 'Password *',
-            placeholder: 'Password',
-            type: 'password',
-            validation: 'required|string|min:5'
-        },
-        role: {
-            label: 'Role',
-            type: 'select',
-            name: 'role',
-            values: []
-        },
-        status: {
-            label: 'Status',
-            type: 'select',
-            name: 'status',
-            values: Object.keys(USER_STATUS_MAP).map(key => ({
-                name: USER_STATUS_MAP[key],
-                value: key
-            }))
+    schema: userSchema,
+    async before({input}, method, filters) {
+        if (!input.role) {
+            delete input.role;
         }
-    }),
-    before(ctx, method, filters) {
+
         if (method === 'find') {
             return query => {
                 query.populate('role').populate('permissions');
             }
+        }
+
+        if (method === 'update' || method === 'create') {
+            input.password = await bcrypt.hash(input.password, 10);
         }
     },
     async after(ctx, method, result) {
@@ -71,6 +92,23 @@ utils.autoCrud('User', {
     }
 });
 
+
+config({
+    name: 'roleAutocomplete',
+    input: {
+        text: 'required|string'
+    },
+    middleware: [
+        'auth:required'
+    ]
+})(
+    async ({db, input}) => {
+        const {Role} = db;
+        return await Role.find().where('name', new RegExp(input.text, 'i'));
+    }
+);
+
+
 utils.autoCrud('Role', {
     middleware: [
         'auth:required',
@@ -86,8 +124,8 @@ utils.autoCrud('Role', {
     before({input}, method, filters) {
         if (method === 'find') {
             return query => {
-                if (input.filters.search) {
-                    query.where('name', new RegExp(input.filters.search, 'i'));
+                if (filters.search) {
+                    query.where('name', new RegExp(filters.search, 'i'));
                 }
             };
         }

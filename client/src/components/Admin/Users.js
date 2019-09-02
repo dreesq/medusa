@@ -12,6 +12,20 @@ export default class Users extends Component {
         );
     };
 
+    renderStatus = value => {
+        let color = 'primary';
+
+        if (value === 'Inactive') {
+            color = 'warning';
+        } else if (value === 'Active') {
+            color = 'success';
+        }
+
+        return (
+            <Tag color={color}>{value}</Tag>
+        )
+    }
+
     render() {
         const filters = [
             {
@@ -34,7 +48,7 @@ export default class Users extends Component {
                             ['role', 'Role', role => role ? role.name : 'N/A', true],
                             ['permissions', 'Permissions', permissions => permissions.join(', ') || 'N/A'],
                             ['locale', 'Locale', locale => locale ? locale.toUpperCase() : 'N/A', true],
-                            ['status', 'Status', value => <Tag>{value}</Tag>, true]
+                            ['status', 'Status', this.renderStatus, true]
                         ]}
                     />
                 </Row>
