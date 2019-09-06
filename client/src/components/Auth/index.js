@@ -67,7 +67,7 @@ class Auth extends Component {
                         <Text as={'h1'} mt={120}>Sign In</Text>
                         <p>Don't have an account? <Link to={'/auth/register'}>Create one</Link></p>
                     </S>
-                    <ActionAlert actions={['login']}/>
+                    <ActionAlert actions={['login']} renderSuccess={false}/>
                     <Form onSubmit={this.login}>
                         <Group>
                             <Label>Email</Label>

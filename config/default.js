@@ -50,14 +50,11 @@ module.exports = () => {
         }
       },
       logger: {
-        path: 'storage/logs/logs.out',
-        maxsize: 10000000,
-        zippedArchive: true,
-        maxFiles: 5
+        driver: 'db'
       },
       i18n: {
         defaultLocale: 'en',
-        path: 'res/locales',
+        driver: 'db',
         locales: [
           'en',
           'de'

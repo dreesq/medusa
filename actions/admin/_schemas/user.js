@@ -1,7 +1,7 @@
 const {Constants, utils} = require('@dreesq/serpent');
 const {USER_STATUS_MAP, USER_STATUS_ACTIVE} = Constants;
 
-exports.userSchema = utils.form({
+exports.userSchema = method => utils.form({
     name: {
         label: 'Name',
         placeholder: 'Name',
@@ -25,14 +25,14 @@ exports.userSchema = utils.form({
         label: 'Email',
         placeholder: 'Email',
         type: 'email',
-        validation: 'email|min:5|unique:user,email',
+        validation: `${method === 'create' ? 'required|' : ''}email|min:5|unique:user,email`,
         ifChanged: true
     },
     password: {
         label: 'Password',
         placeholder: 'Password',
         type: 'password',
-        validation: 'string|min:5',
+        validation: `${method === 'create' ? 'required|' : ''}string|min:5`,
         ifChanged: true
     },
     role: {
@@ -40,7 +40,7 @@ exports.userSchema = utils.form({
         type: 'autocomplete',
         placeholder: 'Role',
         values: 'roleAutocomplete',
-        size: '5'
+        size: '5',
     },
     status: {
         label: 'Status',
@@ -58,6 +58,7 @@ exports.userSchema = utils.form({
         multi: true,
         placeholder: 'Permissions',
         size: '10',
-        values: 'permissionAutocomplete'
+        values: 'permissionAutocomplete',
+        value: []
     }
 });

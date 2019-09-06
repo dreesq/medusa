@@ -22,23 +22,25 @@ class Menu extends Component {
     };
 
     render() {
+        const {features} = client;
         const {user} = client.auth;
 
         return (
             <Nav color="light" light expand="md" css={`
                .active {
-                color: yellow !important;
+                color: #000;
+                font-weight: 600;
                }
             `}>
                 <Container>
                     <Row>
                         <Col d={'flex'} alignItems={'center'}>
-                            <NavLink to={'/'}>
-                                <Text as={'h1'} fontSize={29} fontWeight={'500'} color={'#f9243d'}>serpent</Text>
-                            </NavLink>
-                            <S ml={64} d={'flex'} alignItems={'center'}>
+                            <Link to={'/'}>
+                                <Text as={'h1'} fontSize={29} color={'#000'}>serpent</Text>
+                            </Link>
+                            <S ml={50} d={'flex'} alignItems={'center'}>
                                 <S mr={20}>
-                                    <Link to="/" tag={NavLink} activeClassName="active" exact>Dashboard</Link>
+                                    <NavLink to="/" activeClassName="active" exact>Dashboard</NavLink>
                                 </S>
                                 <Dropdown>
                                     {
@@ -50,20 +52,20 @@ class Menu extends Component {
                                                 </Text>
                                                 <Card width={170} p={[25, 30]} mt={-5}>
                                                     <S mb={12} cursor={'pointer'} hover={'a { color: #7b7b7b; }'}>
-                                                        <Link to={'/users'} activeClassName="active">Users</Link>
+                                                        <NavLink to={'/users'} activeClassName="active">Users</NavLink>
                                                     </S>
                                                     <S mb={12} cursor={'pointer'} hover={'a { color: #7b7b7b; }'}>
-                                                        <Link to={'/roles'} activeClassName="active">Roles</Link>
+                                                        <NavLink to={'/roles'} activeClassName="active">Roles</NavLink>
                                                     </S>
                                                     <S cursor={'pointer'} hover={'a { color: #7b7b7b; }'}>
-                                                        <Link to={'/permissions'} activeClassName="active">Permissions</Link>
+                                                        <NavLink to={'/permissions'} activeClassName="active">Permissions</NavLink>
                                                     </S>
                                                 </Card>
                                             </>
                                         )
                                     }
                                 </Dropdown>
-                                <Link to="/translations" tag={NavLink} activeClassName="active" exact>Translations</Link>
+                                {features.translations && <NavLink to="/translations" activeClassName="active" exact>Translations</NavLink>}
                             </S>
                             <S ml={'auto'}>
                                 <Dropdown>

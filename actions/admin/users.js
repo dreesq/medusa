@@ -49,7 +49,7 @@ utils.autoCrud('User', {
             result.data = result.data.map(item => {
                 item = item.toJSON();
                 item.statusName = USER_STATUS_MAP[item.status];
-                item.permissions = item.permissions.map(permission => ({
+                item.permissions = item.permissions.filter(x => !!x).map(permission => ({
                     value: permission._id,
                     name: permission.name
                 }));

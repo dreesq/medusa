@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/dreesq/medusa#readme",
   "dependencies": {
-    "@dreesq/serpent": "^2.4.3",
+    "@dreesq/serpent": "^2.5.4",
     "@dreesq/serpent-client": "^1.8.8",
-    "@dreesq/sigma": "^1.3.5",
+    "@dreesq/sigma": "^1.4.1",
     "ajv": "^6.10.2",
     "cross-env": "^5.2.1",
     "express": "^4.17.1",
