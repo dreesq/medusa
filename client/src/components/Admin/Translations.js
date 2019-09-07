@@ -270,7 +270,7 @@ export default class Translations extends Component {
                                                                 {item.key}
                                                             </Tag>
                                                         </td>
-                                                        <td style={{width: 420}}>
+                                                        <td>
                                                             <S d={'flex'} flexWrap={'wrap'}>
                                                                 <Input as={'textarea'} minHeight={43} container={{w: '100%'}} onChange={e => this.onChange(index, e)} value={item.content}/>
 
@@ -286,7 +286,7 @@ export default class Translations extends Component {
                                         }
                                         </tbody>
                                     </Table>
-                                    {pagination.pages > 1 && <Pagination totalPages={pagination.pages} onChange={this.onPageChange}/>}
+                                    {pagination.pages > 1 && <Pagination currentPage={pagination.page} totalPages={pagination.pages} onChange={this.onPageChange}/>}
                                 </Card>
                             )
                         }
