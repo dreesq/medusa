@@ -1,4 +1,4 @@
-const {utils, config, Constants} = require('@dreesq/serpent');
+const {utils, config, Constants, override} = require('@dreesq/serpent');
 const bcrypt = require('bcryptjs');
 const {userSchema} = require('./_schemas/user');
 const {USER_STATUS_MAP} = Constants;
@@ -65,7 +65,7 @@ utils.autoCrud('User', {
 config({
     name: 'roleAutocomplete',
     input: {
-        text: 'required|string'
+        text: 'string'
     },
     middleware: [
         'auth:required'
@@ -73,7 +73,7 @@ config({
 })(
     async ({db, input}) => {
         const {Role} = db;
-        const roles = await Role.find().where('name', new RegExp(input.text, 'i'));
+        const roles = await Role.find().where('name', new RegExp(input.text || '', 'i'));
 
         return roles.map(role => ({
             name: role.name,
@@ -160,7 +160,7 @@ utils.autoCrud('Permission', {
 config({
     name: 'permissionAutocomplete',
     input: {
-        text: 'required|string'
+        text: 'string'
     },
     middleware: [
         'auth:required'
@@ -168,7 +168,7 @@ config({
 })(
     async ({db, input}) => {
         const {Permission} = db;
-        const permissions = await Permission.find().where('name', new RegExp(input.text, 'i'));
+        const permissions = await Permission.find().where('name', new RegExp(input.text || '', 'i'));
 
         return permissions.map(permission => ({
             name: permission.name,
@@ -176,3 +176,24 @@ config({
         }));
     }
 );
+
+const capitalize = name => name.charAt(0).toUpperCase() + name.slice(1);
+override('setPassword', config => {
+    for (const key in config.input) {
+        let options = {
+            label: `${capitalize(key)} Password`,
+            type: 'password',
+            placeholder: `${capitalize(key)} Password`,
+            validation: config.input[key]
+        };
+
+        if (key === 'refresh') {
+            options.visible = false;
+        }
+
+        config.input[key] = options;
+    }
+
+    config.input = utils.form(config.input);
+    return config;
+});

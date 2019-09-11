@@ -30,6 +30,7 @@ module.exports = () => {
         confirm: true,
         reset: true,
         refresh: true,
+        update: true,
         jwt: {
           secret: 'mySecret',
           duration: '1d'

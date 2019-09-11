@@ -28,6 +28,10 @@ class Router extends Component {
         client: () => null
     };
 
+    state = {
+        loading: true
+    };
+
     async componentDidMount() {
         const {client} = this.context;
         const {errors, data} = await client.getFeatures();
@@ -39,9 +43,18 @@ class Router extends Component {
         }
 
         client.features = features;
+        this.setState({
+            loading: false
+        });
     }
 
     render() {
+        const {loading} = this.state;
+
+        if (loading) {
+            return null;
+        }
+
         return (
             <BrowserRouter>
                 <Switch>
