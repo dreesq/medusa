@@ -53,6 +53,14 @@ utils.autoCrud('User', {
                     value: permission._id,
                     name: permission.name
                 }));
+
+                if (item.role) {
+                    item.role = {
+                        value: item.role._id,
+                        name: item.role.name
+                    };
+                }
+
                 return item;
             });
         }
@@ -60,7 +68,6 @@ utils.autoCrud('User', {
         return result;
     }
 });
-
 
 config({
     name: 'roleAutocomplete',
@@ -81,7 +88,6 @@ config({
         }));
     }
 );
-
 
 utils.autoCrud('Role', {
     middleware: [
@@ -146,7 +152,10 @@ utils.autoCrud('Permission', {
 
                 if (item.roleId) {
                     item.roleName = item.roleId.name;
-                    item.roleId = item.roleId._id;
+                    item.roleId = {
+                        name: item.roleId.name,
+                        value: item.roleId._id
+                    };
                 }
 
                 return item;
