@@ -65,7 +65,7 @@ export default class Translations extends Component {
             input.app = items[key].app;
         }
 
-        const {data, errors} = await client.unsetTranslation(input);
+        const {errors} = await client.unsetTranslation(input);
 
         if (errors) {
             return;
@@ -172,7 +172,7 @@ export default class Translations extends Component {
     };
 
     render() {
-        const {items, loading, pagination, locales} = this.state;
+        const {items, loading, pagination} = this.state;
 
         return (
             <Layout>
@@ -221,38 +221,31 @@ export default class Translations extends Component {
                             !loading && !!items.length && (
                                 <Card mt={20}>
                                     <Table
-                                        md={`
-                                    thead {
-                                        display: table-row-group;
-                                    }
-                                    
-                                    td {
-                                        display: table-cell;
-                                    }
-                                `}
-                                        xs={`
-                                    thead {
-                                        display: none;
-                                    }
-                                
-                                    td {
-                                        display: block;
-                                    }
-                                `}
+                                        mdDown={`
+                                            thead {
+                                                display: none;
+                                            }
+                                        
+                                            td {
+                                                display: block;
+                                            }
+                                        `}
                                     >
                                         <thead>
-                                        <th>App</th>
-                                        <th>
-                                            <S width={100} as={'span'}>
-                                                Locale
-                                            </S>
-                                        </th>
-                                        <th>Key</th>
-                                        <th>
-                                            <S width={420} as={'span'}>
-                                                Content
-                                            </S>
-                                        </th>
+                                            <tr>
+                                                <th>App</th>
+                                                <th>
+                                                    <S width={100} as={'span'}>
+                                                        Locale
+                                                    </S>
+                                                </th>
+                                                <th>Key</th>
+                                                <th>
+                                                    <S width={420} as={'span'}>
+                                                        Content
+                                                    </S>
+                                                </th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                         {

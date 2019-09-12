@@ -68,12 +68,11 @@ export default class Admin extends Component {
         const statsLoading = Object.keys(this.state.stats).length === 0;
         const {client} = this.context;
         const {stats} = this.state;
-        const {user} = client.auth;
 
         return (
             <Layout>
                 <Row mt={30}>
-                    <Col width={{xs: '100%', sm: '25%'}}>
+                    <Col width={{mdUp: '25%'}}>
                         <Card p={30} className={statsLoading ? 'loading' : ''}>
                             <Text fontWeight={'600'} m={0} mb={5}>Users</Text>
                             <Text color={'primary'} m={0} fontSize={42}>{stats.users}</Text>
@@ -83,7 +82,7 @@ export default class Admin extends Component {
                 {
                     client.features.logs && (
                         <Row mt={30} mb={30}>
-                            <Col sm={'width: 60%'}>
+                            <Col>
                                 <AutoFilter
                                     ref={ref => this.autoFilter = ref}
                                     title={'Logs'}

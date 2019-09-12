@@ -3,6 +3,7 @@ import client from '../../client';
 import {acronym} from "../../utils";
 import {withRouter} from "react-router-dom";
 import {NavLink, Link} from "react-router-dom";
+import {Menu as MenuIcon} from "styled-icons/boxicons-regular/Menu";
 import {
     Nav,
     Dropdown,
@@ -11,10 +12,15 @@ import {
     Container,
     Row,
     Col,
+    Button,
     Sigma as S
 } from "@dreesq/sigma";
 
 class Menu extends Component {
+    state = {
+        open: false
+    }
+
     logout = async () => {
         const {history} = this.props;
         await client.auth.logout();
@@ -22,6 +28,7 @@ class Menu extends Component {
     };
 
     render() {
+        const {open} = this.state;
         const {features} = client;
         const {user} = client.auth;
 
@@ -35,11 +42,33 @@ class Menu extends Component {
                 <Container>
                     <Row>
                         <Col d={'flex'} alignItems={'center'}>
+                            <Button onClick={e => this.setState({open: true})} smUp={'display: none;'} inverted size={'small'} mr={10} p={5}>
+                                <MenuIcon color={'#0490f'} size={24}/>
+                            </Button>
                             <Link to={'/'}>
                                 <Text as={'h1'} fontSize={29} color={'#000'}>serpent</Text>
                             </Link>
-                            <S ml={50} d={'flex'} alignItems={'center'}>
-                                <S mr={20}>
+                            <S ml={50} d={{smUp: 'flex', xs: open ? 'block' : 'none'}} alignItems={'center'} xs={`
+                                background: white;
+                                position: fixed;
+                                width: 100%;
+                                left: 0;
+                                margin: 0;
+                                z-index: 2;
+                                height: 100vh;
+                                top: 0;
+                                padding: 20px;
+                            `}>
+                                <S
+                                    dangerouslySetInnerHTML={{__html: '&times'}}
+                                    c={'#c7c4c4'}
+                                    fontSize={52}
+                                    textAlign={'right'}
+                                    cursor={'pointer'}
+                                    mt={-21}
+                                    onClick={e => this.setState({open: false})}
+                                />
+                                <S mr={20} mt={{xs: 40}}>
                                     <NavLink to="/" activeClassName="active" exact>Dashboard</NavLink>
                                 </S>
                                 <Dropdown>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Menu} from "./";
-import {Container, Row} from "@dreesq/sigma";
+import {Container} from "@dreesq/sigma";
 
 export default class Layout extends Component {
     render() {

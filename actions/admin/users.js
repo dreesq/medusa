@@ -43,6 +43,8 @@ utils.autoCrud('User', {
         if ((method === 'update' || method === 'create') && input.password) {
             input.password = await bcrypt.hash(input.password, 10);
         }
+
+        console.log('xxx', input);
     },
     async after(ctx, method, result) {
         if (method === 'find') {
