@@ -7,6 +7,10 @@ const app = express();
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 process.on('uncaughtException', console.error);
 
+if (process.env.NODE_ENV !== 'production') {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}
+
 const serve = () => {
     app.use(express.static('./client/build'));
 

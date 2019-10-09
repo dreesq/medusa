@@ -65,6 +65,7 @@ class Menu extends Component {
                                     fontSize={52}
                                     textAlign={'right'}
                                     cursor={'pointer'}
+                                    d={{smUp: 'none'}}
                                     mt={-21}
                                     onClick={e => this.setState({open: false})}
                                 />

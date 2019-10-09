@@ -39,7 +39,7 @@ export const capitalize = str => {
  */
 
 export const acronym = (str = '') => {
-    return (str.match(/\b\w/g) || []).join('');
+    return (str.match(/\b\w/g) || []).join('').toUpperCase();
 };
 
 /**
