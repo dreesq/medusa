@@ -1,3 +1,7 @@
-![logo](https://user-images.githubusercontent.com/7228512/53118441-c24f9b00-3555-11e9-89ac-4deca4d17d8c.png)
+The admin component can be used as  starting point of any application. By default it offers base functionality (register, login, reset password) along with admin functionality (user management, authorization management, logs, translations).
 
-React application that uses serpent, providing boilerplate code for fast prototyping new applications.
+# Setup 
+
+1. `git clone`
+2. `npm install`
+3. `npm run dev` or `npm run prod`
