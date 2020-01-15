@@ -59,11 +59,11 @@ class Router extends Component {
             <BrowserRouter>
                 <Switch>
                     {/* ========== Admin =========== */}
-                    <AuthRoute path={'/'} exact component={'Admin'} />
-                    <AuthRoute path={'/users'} component={'Admin/Users'} />
-                    <AuthRoute path={'/roles'} component={'Admin/Roles'} />
-                    <AuthRoute path={'/permissions'} component={'Admin/Permissions'} />
-                    <AuthRoute path={'/translations'} component={'Admin/Translations'} />
+                    <AuthRoute path={'/admin'} exact component={'Admin'} />
+                    <AuthRoute path={'/admin/users'} component={'Admin/Users'} />
+                    <AuthRoute path={'/admin/roles'} component={'Admin/Roles'} />
+                    <AuthRoute path={'/admin/permissions'} component={'Admin/Permissions'} />
+                    <AuthRoute path={'/admin/translations'} component={'Admin/Translations'} />
 
                     {/* ========== User =========== */}
                     <AuthRoute path={'/user/settings'} component={'User'}/>

@@ -21,6 +21,12 @@ export default (WrappedComponent, options = {}) => {
             client: PropTypes.object.isRequired
         };
 
+        updateUser = (user) => {
+            this.setState({
+                user
+            });
+        };
+
         async componentDidMount() {
             const {client} = this.context;
             const {history} = this.props;
@@ -45,6 +51,8 @@ export default (WrappedComponent, options = {}) => {
                 if (options.redirectSuccess) {
                     history.push(options.redirectSuccess);
                 }
+
+                opts.user = client.auth.user;
             } catch(error) {
                 if (options.redirectFailed && window.location.pathname !== options.redirectFailed) {
                     history.push(options.redirectFailed);
@@ -62,7 +70,7 @@ export default (WrappedComponent, options = {}) => {
             }
 
             return (
-                <Context.Provider value={{ user }}>
+                <Context.Provider value={{ user, updateUser: this.updateUser }}>
                     <WrappedComponent/>
                 </Context.Provider>
             );

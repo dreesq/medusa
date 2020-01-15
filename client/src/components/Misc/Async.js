@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Context from '../Misc/Context';
 
 /**
  * HoC handling lazy loading components
@@ -30,7 +31,11 @@ export default path => {
             const {LoadedComponent} = this.state;
 
             if (LoadedComponent) {
-                return <LoadedComponent {...this.props} />;
+                return (
+                    <Context.Consumer>
+                        {props => <LoadedComponent {...this.props} {...props}/>}
+                    </Context.Consumer>
+                );
             }
 
             return null;

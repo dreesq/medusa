@@ -52,7 +52,7 @@ class Register extends Component {
         }
 
         const {history} = this.props;
-        history.push('/');
+        history.push('/admin');
     };
 
     loading = (loading = true) => {

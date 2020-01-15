@@ -43,8 +43,6 @@ utils.autoCrud('User', {
         if ((method === 'update' || method === 'create') && input.password) {
             input.password = await bcrypt.hash(input.password, 10);
         }
-
-        console.log('xxx', input);
     },
     async after(ctx, method, result) {
         if (method === 'find') {
@@ -200,6 +198,7 @@ override('setPassword', config => {
 
         if (key === 'refresh') {
             options.visible = false;
+            options.label = '';
         }
 
         config.input[key] = options;
@@ -208,3 +207,29 @@ override('setPassword', config => {
     config.input = utils.form(config.input);
     return config;
 });
+
+config({
+    name: 'setName',
+    middleware: [
+        'auth:required'
+    ],
+    input: utils.form({
+        name: {
+            validation: 'required|min:1',
+            label: 'Name'
+        }
+    })
+})(
+    async ({user, db, input}) => {
+        await db.User.updateOne({
+            _id: user._id
+        }, {
+            name: input.name
+        });
+
+        return utils.success({
+            message: 'Username updated',
+            name: input.name
+        });
+    }
+);
