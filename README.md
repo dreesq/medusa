@@ -1,4 +1,4 @@
-![App](https://user-images.githubusercontent.com/7228512/72469722-af3a5f00-37e8-11ea-87b0-6d9da7cf7392.png)
+![image](https://user-images.githubusercontent.com/7228512/72470276-2ff95b00-37e9-11ea-98d5-cba67558e469.png)
 
 # Introduction
 
