@@ -1,8 +1,8 @@
-![image](https://user-images.githubusercontent.com/7228512/72470276-2ff95b00-37e9-11ea-98d5-cba67558e469.png)
+![image](https://user-images.githubusercontent.com/7228512/72471404-443e5780-37eb-11ea-96b8-1cb173390778.png)
 
 # Introduction
 
-The admin component can be used as  starting point of any application. By default it offers base functionality (register, login, reset password) along with admin functionality (user management, authorization, logs, translations).
+This repository can be used as  starting point of any web application. By default it offers base functionality (register, login, reset password) along with admin functionality (user management, authorization, logs, translations).
 
 # Setup 
 
