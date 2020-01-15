@@ -35,8 +35,7 @@ class Menu extends Component {
         return (
             <Nav color="light" light expand="md" css={`
                .active {
-                color: #000;
-                font-weight: 600;
+                color: #0490ff;
                }
             `}>
                 <Context.Consumer>
@@ -49,7 +48,7 @@ class Menu extends Component {
                                             <MenuIcon color={'#0490f'} size={24}/>
                                         </Button>
                                         <Link to={'/admin'}>
-                                            <Text as={'h1'} fontSize={29} color={'#000'}>serpent</Text>
+                                            <Text as={'h1'} fontSize={29} color={'#0490ff'} fontWeight={'400'}>Bloom</Text>
                                         </Link>
                                         <S ml={50} d={{smUp: 'flex', xs: open ? 'block' : 'none'}} alignItems={'center'} xs={`
                                 background: white;
