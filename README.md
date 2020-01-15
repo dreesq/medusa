@@ -1,3 +1,5 @@
+![Screenshot_1](https://user-images.githubusercontent.com/7228512/72469722-af3a5f00-37e8-11ea-87b0-6d9da7cf7392.png)
+
 # Introduction
 
 The admin component can be used as  starting point of any application. By default it offers base functionality (register, login, reset password) along with admin functionality (user management, authorization management, logs, translations).
