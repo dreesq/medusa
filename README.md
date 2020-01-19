@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/7228512/72471404-443e5780-37eb-11ea-96b8-1cb173390778.png)
+<img width="1322" alt="Screenshot 2020-01-19 at 20 25 49" src="https://user-images.githubusercontent.com/7228512/72686137-17938400-3afa-11ea-84b5-95a80c5b4e78.png">
 
 # Introduction
 
