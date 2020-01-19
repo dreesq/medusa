@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dreesq/medusa.git"
+    "url": "git+https://github.com/dreesq/bloom.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dreesq/medusa/issues"
+    "url": "https://github.com/dreesq/bloom/issues"
   },
-  "homepage": "https://github.com/dreesq/medusa#readme",
+  "homepage": "https://github.com/dreesq/bloom#readme",
   "dependencies": {
     "@dreesq/serpent": "^2.7.8",
     "@dreesq/serpent-client": "^2.2.0",
