@@ -23,7 +23,7 @@
   "homepage": "https://github.com/dreesq/medusa#readme",
   "dependencies": {
     "@dreesq/serpent": "^2.7.8",
-    "@dreesq/serpent-client": "^2.1.0",
+    "@dreesq/serpent-client": "^2.2.0",
     "@dreesq/sigma": "^1.5.5",
     "ajv": "^6.11.0",
     "cross-env": "^6.0.3",

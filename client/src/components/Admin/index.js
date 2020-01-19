@@ -82,7 +82,7 @@ export default class Admin extends Component {
                 {
                     client.features.logs && (
                         <Row mt={30} mb={30}>
-                            <Col>
+                            <Col width={{mdUp: '60%'}}>
                                 <AutoFilter
                                     ref={ref => this.autoFilter = ref}
                                     title={'Logs'}
