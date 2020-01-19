@@ -6,7 +6,9 @@ exports.userSchema = method => utils.form({
         label: 'Name',
         placeholder: 'Name',
         validation: 'required|string|min:5',
-        size: '7'
+        size: {
+            xsUp: '70%'
+        }
     },
     locale: {
         label: 'Locale',
@@ -19,7 +21,9 @@ exports.userSchema = method => utils.form({
             }
         ],
         value: 'en',
-        size: '3'
+        size: {
+            xsUp: '30%'
+        }
     },
     email: {
         label: 'Email',
@@ -40,7 +44,9 @@ exports.userSchema = method => utils.form({
         type: 'autocomplete',
         placeholder: 'Role',
         values: 'roleAutocomplete',
-        size: '5',
+        size: {
+            xsUp: '50%'
+        }
     },
     status: {
         label: 'Status',
@@ -50,7 +56,9 @@ exports.userSchema = method => utils.form({
             value: key
         })),
         value: USER_STATUS_ACTIVE,
-        size: '5'
+        size: {
+            xsUp: '50%'
+        }
     },
     permissions: {
         label: 'Permissions',
