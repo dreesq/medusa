@@ -58,8 +58,10 @@ class Router extends Component {
         return (
             <BrowserRouter>
                 <Switch>
+                    {/* =========== App ============== */}
+                    <AuthRoute path={'/'} exact component={'App'} />
+
                     {/* ========== Admin =========== */}
-                    <AuthRoute path={'/'} exact component={'Admin'} />
                     <AuthRoute path={'/admin'} exact component={'Admin'} />
                     <AuthRoute path={'/admin/users'} component={'Admin/Users'} />
                     <AuthRoute path={'/admin/roles'} component={'Admin/Roles'} />

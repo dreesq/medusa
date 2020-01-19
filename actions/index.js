@@ -3,3 +3,4 @@
  */
 
 require('./admin');
+require('./app');

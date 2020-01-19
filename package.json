@@ -1,7 +1,7 @@
 {
-  "name": "@dreesq/serpent-admin",
+  "name": "@dreesq/bloom",
   "version": "1.0.0",
-  "description": "Admin panel built using serpent, serpent-client and react",
+  "description": "Application boilerplate built using serpent, serpent-client, sigma and react",
   "main": "index.js",
   "scripts": {
     "server:start": "node index.js",
@@ -22,14 +22,14 @@
   },
   "homepage": "https://github.com/dreesq/medusa#readme",
   "dependencies": {
-    "@dreesq/serpent": "^2.7.4",
+    "@dreesq/serpent": "^2.7.8",
     "@dreesq/serpent-client": "^2.1.0",
     "@dreesq/sigma": "^1.5.5",
-    "ajv": "^6.10.2",
+    "ajv": "^6.11.0",
     "cross-env": "^6.0.3",
     "express": "^4.17.1",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -39,7 +39,7 @@
     "styled-icons": "^9.2.0"
   },
   "devDependencies": {
-    "react-scripts": "^3.3.0",
+    "react-scripts": "^3.2.0",
     "stmux": "^1.8.0"
   }
 }

@@ -48,19 +48,19 @@ class Menu extends Component {
                                             <MenuIcon color={'#0490f'} size={24}/>
                                         </Button>
                                         <Link to={'/admin'}>
-                                            <Text as={'h1'} fontSize={29} color={'#0490ff'} fontWeight={'400'}>Bloom</Text>
+                                            <Text as={'h1'} fontSize={29} color={'#0490ff'} fontWeight={'400'}>b</Text>
                                         </Link>
-                                        <S ml={50} d={{smUp: 'flex', xs: open ? 'block' : 'none'}} alignItems={'center'} xs={`
-                                background: white;
-                                position: fixed;
-                                width: 100%;
-                                left: 0;
-                                margin: 0;
-                                z-index: 2;
-                                height: 100vh;
-                                top: 0;
-                                padding: 20px;
-                            `}>
+                                        <S ml={30} d={{smUp: 'flex', xs: open ? 'block' : 'none'}} alignItems={'center'} xs={`
+                                            background: white;
+                                            position: fixed;
+                                            width: 100%;
+                                            left: 0;
+                                            margin: 0;
+                                            z-index: 2;
+                                            height: 100vh;
+                                            top: 0;
+                                            padding: 20px;
+                                        `}>
                                             <S
                                                 dangerouslySetInnerHTML={{__html: '&times'}}
                                                 c={'#c7c4c4'}
@@ -110,7 +110,7 @@ class Menu extends Component {
                                                                     height={36}
                                                                     mr={6}
                                                                     borderRadius={'50%'}
-                                                                    background={'#f9243d'}
+                                                                    background={'#0490ff'}
                                                                     color={'#fff'}
                                                                     d={'flex'}
                                                                     alignItems={'center'}
