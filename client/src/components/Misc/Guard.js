@@ -42,9 +42,7 @@ export default (WrappedComponent, options = {}) => {
                     throw new Error();
                 }
 
-                const {is} = client.auth;
-
-                if (options.role && !is(options.role)) {
+                if (options.role && !client.auth.is(options.role)) {
                     return history.push(options.redirectFailed);
                 }
 
@@ -54,6 +52,7 @@ export default (WrappedComponent, options = {}) => {
 
                 opts.user = client.auth.user;
             } catch(error) {
+                console.error('eeee', error);
                 if (options.redirectFailed && window.location.pathname !== options.redirectFailed) {
                     history.push(options.redirectFailed);
                 }
