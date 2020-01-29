@@ -9,4 +9,6 @@ This repository can be used as  starting point of any web application. By defaul
 1. `git clone`
 2. `npm install -S`
 3. Edit `config/default.js` or `config/production.js` to match your needs
-4. `npm run dev` or `npm run prod`
+4. edit `init.js` file to match your needs. *Note*: Only use in development
+5. `node init.js`
+6. `npm run dev` or `npm run prod`

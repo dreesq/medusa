@@ -10,14 +10,15 @@ import client from '../client';
 import Async from './Misc/Async';
 import Guard from './Misc/Guard';
 
-const AuthRoute = ({path, component, exact = false}) => (
+const AuthRoute = ({path, component, exact = false, role}) => (
     <Route
         path={path}
         exact={exact}
         component={Guard(
             Async(component),
     {
-                redirectFailed: '/auth'
+                redirectFailed: '/auth',
+                ...(role ? { role } : {})
             }
         )}
     />
@@ -62,11 +63,11 @@ class Router extends Component {
                     <AuthRoute path={'/'} exact component={'App'} />
 
                     {/* ========== Admin =========== */}
-                    <AuthRoute path={'/admin'} exact component={'Admin'} />
-                    <AuthRoute path={'/admin/users'} component={'Admin/Users'} />
-                    <AuthRoute path={'/admin/roles'} component={'Admin/Roles'} />
-                    <AuthRoute path={'/admin/permissions'} component={'Admin/Permissions'} />
-                    <AuthRoute path={'/admin/translations'} component={'Admin/Translations'} />
+                    <AuthRoute path={'/admin'} exact component={'Admin'} role={'admin'}/>
+                    <AuthRoute path={'/admin/users'} component={'Admin/Users'} role={'admin'}/>
+                    <AuthRoute path={'/admin/roles'} component={'Admin/Roles'} role={'admin'}/>
+                    <AuthRoute path={'/admin/permissions'} component={'Admin/Permissions'} role={'admin'}/>
+                    <AuthRoute path={'/admin/translations'} component={'Admin/Translations'} role={'admin'}/>
 
                     {/* ========== User =========== */}
                     <AuthRoute path={'/user/settings'} component={'User'}/>
