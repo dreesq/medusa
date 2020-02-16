@@ -22,8 +22,8 @@ const serve = () => {
 (async () => {
     await setup(app, {
         actions: {
-            list: '/api',
-            handler: '/api'
+            list: '/',
+            handler: '/'
         }
     });
 

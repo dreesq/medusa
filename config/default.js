@@ -24,7 +24,8 @@ module.exports = () => {
         }
       },
       db: {
-        server: 'mongodb://127.0.0.1/database'
+        driver: 'mongodb',
+        server: 'mongodb://127.0.0.1/database',
       },
       auth: {
         confirm: true,

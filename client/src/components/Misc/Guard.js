@@ -52,7 +52,6 @@ export default (WrappedComponent, options = {}) => {
 
                 opts.user = client.auth.user;
             } catch(error) {
-                console.error('eeee', error);
                 if (options.redirectFailed && window.location.pathname !== options.redirectFailed) {
                     history.push(options.redirectFailed);
                 }
